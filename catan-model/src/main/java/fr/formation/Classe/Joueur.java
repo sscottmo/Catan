@@ -1,6 +1,7 @@
 package fr.formation.Classe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,6 @@ import javax.validation.constraints.PositiveOrZero;
 
 
 @Entity
-@Table(name = "Joueur")
 public class Joueur extends Utilisateur {
 	
 	
@@ -53,8 +53,8 @@ public class Joueur extends Utilisateur {
 	private int minerai = 0;
 	
 	
-	@OneToMany(mappedBy="joueurCarte")
-	private ArrayList<Carte> mesCartes;
+	@OneToMany(mappedBy="joueur")
+	private List<Carte> main;
 	
 	@Column(name = "JOU_ARMEE")
 	@PositiveOrZero
@@ -115,11 +115,11 @@ public class Joueur extends Utilisateur {
 	public void setMinerai(int minerai) {
 		this.minerai = minerai;
 	}
-	public ArrayList<Carte> getMesCartes() {
-		return mesCartes;
+	public List<Carte> getMain() {
+		return main;
 	}
-	public void setMesCartes(ArrayList<Carte> mesCartes) {
-		this.mesCartes = mesCartes;
+	public void setMain(List<Carte> mesCartes) {
+		this.main = mesCartes;
 	}
 	public int getArmee() {
 		return armee;
