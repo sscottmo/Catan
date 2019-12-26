@@ -1,7 +1,5 @@
 package fr.formation.Classe;
 
-import javax.persistence.OneToOne;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -31,6 +30,18 @@ public class Position {
 	
 	@OneToOne(mappedBy="posBandit")
 	private Partie bandit;
+
+	@OneToOne(mappedBy="pos1")
+	private Croisement croisement1;
+	@OneToOne(mappedBy="pos2")
+	private Croisement croisement2;
+	@OneToOne(mappedBy="pos3")
+	private Croisement croisement3;
+
+	@OneToOne(mappedBy="pos1")
+	private Croisement chemin1;
+	@OneToOne(mappedBy="pos2")
+	private Croisement chemin2;
 	
 	public int getId() {
 		return id;
