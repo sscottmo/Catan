@@ -2,6 +2,8 @@ package fr.formation.Classe;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,13 +21,18 @@ public class Carte {
 	@Column(name = "CARTE_ID")
 	private int id = 0;
 	
-	
+	@Column(name="CARTE_CARTEDEV")
+	@Enumerated(EnumType.STRING)
 	private CarteDev carteDev;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="CARTE_JOUEUR")
-	private Joueur joueurCarte;
+	private Joueur joueur;
+	
+	@ManyToOne
+	@JoinColumn(name="CARTE_PARTIE")
+	private Partie partie;
 	
 	
 	

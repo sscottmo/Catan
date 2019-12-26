@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.PositiveOrZero;
 
 
 @Entity
@@ -23,27 +22,47 @@ public class Joueur extends Utilisateur {
 	@JoinColumn(name="JOU_PARTIE")
 	private Partie partie;
 	
-	
+	@Column(name="JOU_COULEUR")
+	@Enumerated(EnumType.STRING)
 	private Couleur couleur;
 	
 	@OneToMany(mappedBy = "joueur")
 	private ArrayList<Croisement> mesCroisements;
 	
 	@OneToMany(mappedBy = "joueur")
-	private ArrayList<Chemin> mesChemins = null;
+	private ArrayList<Chemin> mesChemins;
 	
+	@Column(name = "JOU_BOIS")
+	@PositiveOrZero
 	private int bois = 0;
+	
+	@Column(name = "JOU_ARGILE")
+	@PositiveOrZero
 	private int argile = 0;
+	
+	@Column(name = "JOU_LAINE")
+	@PositiveOrZero
 	private int laine = 0;
+	
+	@Column(name = "JOU_BLE")
+	@PositiveOrZero
 	private int ble = 0;
+	
+	@Column(name = "JOU_MINERAI")
+	@PositiveOrZero
 	private int minerai = 0;
 	
 	
 	@OneToMany(mappedBy="joueurCarte")
 	private ArrayList<Carte> mesCartes;
 	
+	@Column(name = "JOU_ARMEE")
+	@PositiveOrZero
 	private int armee = 0;
-	private int routeLaPlusLongue = 0;
+	
+	@Column(name = "JOU_ROUTEMAX")
+	@PositiveOrZero
+	private int routeMax = 0;
 	
 	
 	
@@ -109,10 +128,10 @@ public class Joueur extends Utilisateur {
 		this.armee = armee;
 	}
 	public int getRouteLaPlusLongue() {
-		return routeLaPlusLongue;
+		return routeMax;
 	}
 	public void setRouteLaPlusLongue(int routeLaPlusLongue) {
-		this.routeLaPlusLongue = routeLaPlusLongue;
+		this.routeMax = routeLaPlusLongue;
 	}
 
 	public Partie getPartie() {

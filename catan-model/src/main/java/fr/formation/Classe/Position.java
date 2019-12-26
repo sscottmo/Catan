@@ -1,5 +1,7 @@
 package fr.formation.Classe;
 
+import javax.persistence.OneToOne;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,6 +28,9 @@ public class Position {
 	@Column(name = "POS_TYPE")
 	@Enumerated(EnumType.STRING)
 	private Type type;
+	
+	@OneToOne(mappedBy="posBandit")
+	private Partie bandit;
 	
 	public int getId() {
 		return id;
