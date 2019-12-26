@@ -42,13 +42,6 @@ public class Croisement {
 	
 	public Position getPos1() {
 		return pos1;
-
-	public ArrayList<Position> getCroisement() {
-		ArrayList<Position> croisement = new ArrayList<Position>();
-		croisement.add(pos1);
-		croisement.add(pos2);
-		croisement.add(pos3);
-		return croisement;
 	}
 	public void setPos1(Position pos1) {
 		this.pos1 = pos1;
@@ -95,6 +88,14 @@ public class Croisement {
 
 	public void setAccesPort(boolean accesPort) {
 		this.accesPort = accesPort;
+	}
+	
+	public ArrayList<Position> getCroisement() {
+		ArrayList<Position> croisement = new ArrayList<Position>();
+		croisement.add(pos1);
+		croisement.add(pos2);
+		croisement.add(pos3);
+		return croisement;
 	}
 
 }
