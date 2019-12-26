@@ -31,7 +31,7 @@ public class Croisement {
 	private Position pos3;
 	
 	@ManyToOne
-	@JoinColumn(name="CROIS_JOUEUR")
+	@JoinColumn(name = "CROIS_JOUEUR")
 	private Joueur joueur;
 
 	@Column(name="CROIS_VILLE")
@@ -42,6 +42,13 @@ public class Croisement {
 	
 	public Position getPos1() {
 		return pos1;
+
+	public ArrayList<Position> getCroisement() {
+		ArrayList<Position> croisement = new ArrayList<Position>();
+		croisement.add(pos1);
+		croisement.add(pos2);
+		croisement.add(pos3);
+		return croisement;
 	}
 	public void setPos1(Position pos1) {
 		this.pos1 = pos1;
@@ -61,26 +68,33 @@ public class Croisement {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Joueur getJoueur() {
 		return joueur;
 	}
+
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
+
 	public boolean isVille() {
 		return ville;
 	}
+
 	public void setVille(boolean ville) {
 		this.ville = ville;
 	}
+
 	public boolean isAccesPort() {
 		return accesPort;
 	}
+
 	public void setAccesPort(boolean accesPort) {
 		this.accesPort = accesPort;
 	}
-	
+
 }
