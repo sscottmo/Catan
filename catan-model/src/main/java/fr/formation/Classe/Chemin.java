@@ -43,6 +43,12 @@ public class Chemin {
 	private Joueur joueur;
 	
 	
+	public ArrayList<Position> getChemin() {
+		ArrayList<Position> chemin = new ArrayList<Position>();
+		chemin.add(pos1);
+		chemin.add(pos2);
+		return chemin;
+	}
 	public int getId() {
 		return id;
 	}
