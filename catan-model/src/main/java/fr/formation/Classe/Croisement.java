@@ -2,10 +2,17 @@ package fr.formation.Classe;
 
 import java.util.ArrayList;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Croisement {
 	private ArrayList<Position> croisement;
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="CROIS_JOUEUR")
 	private Joueur joueur;
+	
 	private boolean ville = false;
 	private boolean accesPort = false;
 	public ArrayList<Position> getCroisement() {

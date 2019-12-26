@@ -2,30 +2,52 @@ package fr.formation.Classe;
 
 import java.util.ArrayList;
 
-public class Joueur {
-	private int id;
-	private Utilisateur utilisateur;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "Joueur")
+public class Joueur extends Utilisateur {
+	
+	
+	@ManyToOne
+	@JoinColumn(name="JOU_PARTIE")
 	private Partie partie;
+	
+	
 	private Couleur couleur;
-	private ArrayList<Croisement> mesCroisements = null;
+	
+	@OneToMany(mappedBy = "joueur")
+	private ArrayList<Croisement> mesCroisements;
+	
+	@OneToMany(mappedBy = "joueur")
 	private ArrayList<Chemin> mesChemins = null;
+	
 	private int bois = 0;
 	private int argile = 0;
 	private int laine = 0;
 	private int ble = 0;
 	private int minerai = 0;
-	private ArrayList<Carte> mesCartes = null;
+	
+	
+	@OneToMany(mappedBy="joueurCarte")
+	private ArrayList<Carte> mesCartes;
+	
 	private int armee = 0;
 	private int routeLaPlusLongue = 0;
 	
 	
 	
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
+
 	public Couleur getCouleur() {
 		return couleur;
 	}
@@ -92,12 +114,7 @@ public class Joueur {
 	public void setRouteLaPlusLongue(int routeLaPlusLongue) {
 		this.routeLaPlusLongue = routeLaPlusLongue;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public Partie getPartie() {
 		return partie;
 	}
