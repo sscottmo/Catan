@@ -1,5 +1,7 @@
 package fr.formation.DAO;
 
-public interface IDAOChemin {
+import fr.formation.Classe.Chemin;
+
+public interface IDAOChemin extends IDAO<Chemin> {
 
 }
