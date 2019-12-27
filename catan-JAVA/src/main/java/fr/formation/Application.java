@@ -5,11 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.formation.Classe.Carte;
+import fr.formation.Classe.CarteDev;
 import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
 import fr.formation.Classe.TypePort;
 import fr.formation.Classe.TypeTerre;
+import fr.formation.DAO.IDAOCarte;
 import fr.formation.DAO.IDAOPosition;
+import fr.formation.DAO.hibernate.DAOCarteHibernate;
 import fr.formation.DAO.hibernate.DAOHibernate;
 import fr.formation.DAO.hibernate.DAOPositionHibernate;
 
@@ -30,50 +34,56 @@ public class Application {
 //		}
 
 		
-		
+		// Melange des cases ressources et ports
+		// Pour les ressources
 		IDAOPosition daoPosition = new DAOPositionHibernate();
-		
-		
-		
-//		daoPosition.findAll().forEach(p -> System.out.println(p.getId()+ " "+ p.getType()));
-		
 		List<TypeTerre> toRandom = new ArrayList<TypeTerre>();
 		for (TypeTerre t : TypeTerre.values()) {
 			for (int i = 0; i < t.getOccurences(); i++) {
 				toRandom.add(TypeTerre.valueOf(t.name()));
 			}
 		}
-		
-		Collections.shuffle(toRandom);
-		
-		
-		
+		Collections.shuffle(toRandom); 
 		List<Position> positions = daoPosition.findAll();
 		for (int i=1; i<19; i++) {
 			positions.get(i)
 			.setType(Type.valueOf(toRandom.remove(0).name()));
 		}
-		
+		// Pour les ports
 		List<TypePort> toRandomPort = new ArrayList<TypePort>();
 		for (TypePort t : TypePort.values()) {
 			for (int i = 0; i < t.getOccurences(); i++) {
 				toRandomPort.add(TypePort.valueOf(t.name()));
 			}
 		}
-		
-		Collections.shuffle(toRandomPort);
-		
-		
-		
+		Collections.shuffle(toRandomPort); 
 		for (int i=19; i<28; i++) {
 			positions.get(i)
 			.setType(Type.valueOf(toRandomPort.remove(0).name()));
 		}
-		
-		
+		 // On sauvegarde toutes les positions qu'on vient de melanger
 		for(Position p : positions) {
 			daoPosition.save(p);
 		}
+		// Melange des cartes developpement
+		IDAOCarte daoCarte = new DAOCarteHibernate();
+		List<CarteDev> toRandomCarte = new ArrayList<CarteDev>();
+		for (CarteDev c : CarteDev.values()) {
+			for (int i = 0; i < c.getOccurences(); i++) {
+				toRandomCarte.add(CarteDev.valueOf(c.name()));
+			}
+		}
+		Collections.shuffle(toRandomCarte);
+		List<Carte> cartes = daoCarte.findAll();
+		for (int i=0; i<25; i++) {
+			cartes.get(i)
+			.setCarteDev(CarteDev.valueOf(toRandomCarte.remove(0).name()));
+		}
+		for(Carte c : cartes) {
+			daoCarte.save(c);
+		}
+		
+		
 		
 //		System.out.println(daoPosition.listRand(2, 20));
 
