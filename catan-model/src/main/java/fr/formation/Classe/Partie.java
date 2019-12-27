@@ -30,27 +30,27 @@ public class Partie {
 	
 	@Column(name = "PART_BOIS")
 	@PositiveOrZero
-	private int bois;
+	private int bois = 19;
 	
 	@Column(name = "PART_ARGILE")
 	@PositiveOrZero
-	private int argile;
+	private int argile = 19;
 	
 	@Column(name = "PART_LAINE")
 	@PositiveOrZero
-	private int laine;
+	private int laine = 19;
 	
 	@Column(name = "PART_BLE")
 	@PositiveOrZero
-	private int ble;
+	private int ble = 19;
 	
 	@Column(name = "PART_MINERAI")
 	@PositiveOrZero
-	private int minerai;
+	private int minerai = 19;
 	
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
-	private Position posBandit;
+	private Position posBandit = new Position(1,1,0,Type.Desert);
 
 	public int getId() {
 		return id;

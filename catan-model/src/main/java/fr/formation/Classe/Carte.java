@@ -28,7 +28,7 @@ public class Carte {
 	
 	@ManyToOne
 	@JoinColumn(name="CARTE_JOUEUR")
-	private Joueur joueur;
+	private Joueur joueur = null;
 	
 	@ManyToOne
 	@JoinColumn(name="CARTE_PARTIE")

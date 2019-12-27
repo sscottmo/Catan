@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "UTI_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 
-public abstract class Utilisateur {
+public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="UTI_ID")

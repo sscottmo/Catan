@@ -67,4 +67,14 @@ public class Position {
 	public void setType(Type type) {
 		this.type = type;
 	}
+	
+	public Position(int id, int pos, int val, Type type) {
+		this.id = id;
+		this.pos = pos;
+		this.val = val;
+		this.type = type;
+	}
+	public Position() {
+		
+	}
 }
