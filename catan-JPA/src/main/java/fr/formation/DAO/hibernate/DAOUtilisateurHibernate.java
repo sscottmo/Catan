@@ -1,5 +1,6 @@
 package fr.formation.DAO.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.formation.Classe.Utilisateur;
@@ -62,5 +63,22 @@ public class DAOUtilisateurHibernate extends DAOHibernate implements IDAOUtilisa
 		delete(lUtilisateurASupprimer);
 	}
 	
+	
+	public List<Utilisateur> commencerPartie(){
+		return em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
+	}
+	
+	public List<Utilisateur> choisirJoueur(){
+		List<Utilisateur> joueurs = new ArrayList <Utilisateur>();
+		joueurs = em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
+		while (joueurs.size()>4) {
+			joueurs.remove(joueurs.get(1));
+		}
+		joueurs.forEach(j -> {j.setRecherchePartie(false);
+								this.save(j);
+								});
+		
+		return joueurs;
+	}
 	
 }
