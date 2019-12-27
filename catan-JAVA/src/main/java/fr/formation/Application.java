@@ -7,15 +7,20 @@ import java.util.Scanner;
 
 import fr.formation.Classe.Carte;
 import fr.formation.Classe.CarteDev;
+import fr.formation.Classe.Partie;
 import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
 import fr.formation.Classe.TypePort;
 import fr.formation.Classe.TypeTerre;
 import fr.formation.DAO.IDAOCarte;
+import fr.formation.DAO.IDAOPartie;
 import fr.formation.DAO.IDAOPosition;
+import fr.formation.DAO.IDAOUtilisateur;
 import fr.formation.DAO.hibernate.DAOCarteHibernate;
 import fr.formation.DAO.hibernate.DAOHibernate;
+import fr.formation.DAO.hibernate.DAOPartieHibernate;
 import fr.formation.DAO.hibernate.DAOPositionHibernate;
+import fr.formation.DAO.hibernate.DAOUtilisateurHibernate;
 
 public class Application {
 	static Scanner sc = new Scanner(System.in);
@@ -32,7 +37,12 @@ public class Application {
 //			System.out.println("Echec de la connexion");
 //			e.printStackTrace();
 //		}
-
+		long startTime = System.currentTimeMillis();
+		
+		IDAOUtilisateur daoUtilisateur = new DAOUtilisateurHibernate();
+		while((daoUtilisateur.commencerPartie().size())<=3 & System.currentTimeMillis()-startTime<100000) {	}
+		daoUtilisateur.choisirJoueur();	
+		
 		
 		// Melange des cases ressources et ports
 		// Pour les ressources
@@ -83,6 +93,10 @@ public class Application {
 			daoCarte.save(c);
 		}
 		
+		Partie partie = new Partie();
+		partie.setPioche(daoCarte.findAll());
+		
+		IDAOPartie daoPartie = new DAOPartieHibernate();
 		
 		
 //		System.out.println(daoPosition.listRand(2, 20));

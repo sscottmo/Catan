@@ -35,7 +35,10 @@ public class Utilisateur {
 	private String motDePasse;
 	
 	@Column(name="UTI_EST_CONNECTE")
-	private boolean estConnecte;
+	private Boolean estConnecte;
+
+	@Column(name="UTI_RECHERCHE_PARTIE")
+	private Boolean recherchePartie = false;
 
 	public int getId() {
 		return id;
@@ -67,6 +70,14 @@ public class Utilisateur {
 
 	public void setEstConnecte(boolean estConnecte) {
 		this.estConnecte = estConnecte;
+	}
+
+	public boolean isRecherchePartie() {
+		return recherchePartie;
+	}
+
+	public void setRecherchePartie(boolean recherchePartie) {
+		this.recherchePartie = recherchePartie;
 	}
 	
 	
