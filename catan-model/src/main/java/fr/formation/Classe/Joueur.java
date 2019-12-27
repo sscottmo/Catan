@@ -1,6 +1,5 @@
 package fr.formation.Classe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.PositiveOrZero;
 
 
@@ -27,10 +25,10 @@ public class Joueur extends Utilisateur {
 	private Couleur couleur;
 	
 	@OneToMany(mappedBy = "joueur")
-	private ArrayList<Croisement> mesCroisements;
+	private List<Croisement> mesCroisements;
 	
 	@OneToMany(mappedBy = "joueur")
-	private ArrayList<Chemin> mesChemins;
+	private List<Chemin> mesChemins;
 	
 	@Column(name = "JOU_BOIS")
 	@PositiveOrZero
@@ -73,16 +71,16 @@ public class Joueur extends Utilisateur {
 	public void setCouleur(Couleur couleur) {
 		this.couleur = couleur;
 	}
-	public ArrayList<Croisement> getMesCroisements() {
+	public List<Croisement> getMesCroisements() {
 		return mesCroisements;
 	}
-	public void setMesCroisements(ArrayList<Croisement> mesCroisements) {
+	public void setMesCroisements(List<Croisement> mesCroisements) {
 		this.mesCroisements = mesCroisements;
 	}
-	public ArrayList<Chemin> getMesChemins() {
+	public List<Chemin> getMesChemins() {
 		return mesChemins;
 	}
-	public void setMesChemins(ArrayList<Chemin> mesChemins) {
+	public void setMesChemins(List<Chemin> mesChemins) {
 		this.mesChemins = mesChemins;
 	}
 	public int getBois() {

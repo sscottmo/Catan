@@ -1,6 +1,7 @@
 package fr.formation.Classe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -90,8 +91,8 @@ public class Croisement {
 		this.accesPort = accesPort;
 	}
 	
-	public ArrayList<Position> getCroisement() {
-		ArrayList<Position> croisement = new ArrayList<Position>();
+	public List<Position> getCroisement() {
+		List<Position> croisement = new ArrayList<Position>();
 		croisement.add(pos1);
 		croisement.add(pos2);
 		croisement.add(pos3);
