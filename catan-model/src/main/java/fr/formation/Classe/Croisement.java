@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Croisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="POS_ID")
+	@Column(name="CROIS_ID")
 	private int id;
 	
 	@OneToOne

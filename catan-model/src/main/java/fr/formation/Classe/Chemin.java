@@ -18,12 +18,19 @@ import javax.persistence.Table;
 public class Chemin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="POS_ID")
+	@Column(name="CHEM_ID")
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name="CROIS_POS_1")
+	@JoinColumn(name="CHEM_POS_1")
 	private Position pos1;
+	@OneToOne
+	@JoinColumn(name="CHEM_POS_2")
+	private Position pos2;
+	@ManyToOne
+	@JoinColumn(name="CHEM_JOUEUR")
+	private Joueur joueur;
+
 	public Position getPos1() {
 		return pos1;
 	}
@@ -36,12 +43,6 @@ public class Chemin {
 	public void setPos2(Position pos2) {
 		this.pos2 = pos2;
 	}
-	@OneToOne
-	@JoinColumn(name="CROIS_POS_2")
-	private Position pos2;
-	@ManyToOne
-	@JoinColumn(name="CHEM_JOUEUR")
-	private Joueur joueur;
 	
 	
 	public List<Position> getChemin() {
