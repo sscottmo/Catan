@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="utilisateur")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "PER_TYPE", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "UTI_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 
 public abstract class Utilisateur {
 	@Id
