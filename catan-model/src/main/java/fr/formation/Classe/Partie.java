@@ -1,6 +1,6 @@
 package fr.formation.Classe;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +17,10 @@ public class Partie {
 	private int id;
 	
 	@OneToMany(mappedBy = "partie")
-	private ArrayList<Joueur> joueurs;
+	private List<Joueur> joueurs;
 	
 	@OneToMany(mappedBy = "partie")
-	private ArrayList<Carte> pioche;
+	private List<Carte> pioche;
 	
 	@Column(name = "PART_BOIS")
 	@PositiveOrZero
@@ -45,4 +45,78 @@ public class Partie {
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
 	private Position posBandit;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Joueur> getJoueurs() {
+		return joueurs;
+	}
+
+	public void setJoueurs(List<Joueur> joueurs) {
+		this.joueurs = joueurs;
+	}
+
+	public List<Carte> getPioche() {
+		return pioche;
+	}
+
+	public void setPioche(List<Carte> pioche) {
+		this.pioche = pioche;
+	}
+
+	public int getBois() {
+		return bois;
+	}
+
+	public void setBois(int bois) {
+		this.bois = bois;
+	}
+
+	public int getArgile() {
+		return argile;
+	}
+
+	public void setArgile(int argile) {
+		this.argile = argile;
+	}
+
+	public int getLaine() {
+		return laine;
+	}
+
+	public void setLaine(int laine) {
+		this.laine = laine;
+	}
+
+	public int getBle() {
+		return ble;
+	}
+
+	public void setBle(int ble) {
+		this.ble = ble;
+	}
+
+	public int getMinerai() {
+		return minerai;
+	}
+
+	public void setMinerai(int minerai) {
+		this.minerai = minerai;
+	}
+
+	public Position getPosBandit() {
+		return posBandit;
+	}
+
+	public void setPosBandit(Position posBandit) {
+		this.posBandit = posBandit;
+	}
+	
+	
 }

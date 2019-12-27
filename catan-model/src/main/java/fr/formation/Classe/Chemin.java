@@ -1,6 +1,7 @@
 package fr.formation.Classe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,8 +44,8 @@ public class Chemin {
 	private Joueur joueur;
 	
 	
-	public ArrayList<Position> getChemin() {
-		ArrayList<Position> chemin = new ArrayList<Position>();
+	public List<Position> getChemin() {
+		List<Position> chemin = new ArrayList<Position>();
 		chemin.add(pos1);
 		chemin.add(pos2);
 		return chemin;
