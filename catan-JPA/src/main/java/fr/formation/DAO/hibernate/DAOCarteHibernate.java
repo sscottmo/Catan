@@ -7,9 +7,9 @@ import fr.formation.DAO.IDAOCarte;
 
 public class DAOCarteHibernate extends DAOHibernate implements IDAOCarte {
 	@Override
-	public List findAll() {
+	public List<Carte> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("select a from Carte a", Carte.class).getResultList();
+		return em.createQuery("select c from Carte c", Carte.class).getResultList();
 	}
 
 	@Override

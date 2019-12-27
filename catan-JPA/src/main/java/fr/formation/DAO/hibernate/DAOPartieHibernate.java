@@ -2,24 +2,24 @@ package fr.formation.DAO.hibernate;
 
 import java.util.List;
 
-import fr.formation.Classe.Position;
-import fr.formation.DAO.IDAOPosition;
+import fr.formation.Classe.Partie;
+import fr.formation.DAO.IDAOPartie;
 
-public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
+public class DAOPartieHibernate extends DAOHibernate implements IDAOPartie{
 	@Override
-	public List<Position> findAll() {
+	public List<Partie> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("select p from Position p", Position.class).getResultList();
+		return em.createQuery("select p from Partie p", Partie.class).getResultList();
 	}
 
 	@Override
-	public Position findById(int id) {
+	public Partie findById(int id) {
 		// TODO Auto-generated method stub
-		return em.find(Position.class, id);
+		return em.find(Partie.class, id);
 	}
 
 	@Override
-	public Position save(Position entity) {
+	public Partie save(Partie entity) {
 		// TODO Auto-generated method stub
 
 		em.getTransaction().begin();
@@ -39,7 +39,7 @@ public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
 	}
 
 	@Override
-	public void delete(Position entity) {
+	public void delete(Partie entity) {
 		// TODO Auto-generated method stub
 		try {
 			em.getTransaction().begin();
@@ -57,9 +57,9 @@ public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
 	@Override
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
-		Position lePositionASupprimer = new Position();
-		lePositionASupprimer.setId(id);
-		delete(lePositionASupprimer);
+		Partie lePartieASupprimer = new Partie();
+		lePartieASupprimer.setId(id);
+		delete(lePartieASupprimer);
 	}
 	
 }

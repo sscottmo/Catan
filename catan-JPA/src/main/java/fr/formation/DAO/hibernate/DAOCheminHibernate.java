@@ -3,14 +3,13 @@ package fr.formation.DAO.hibernate;
 import java.util.List;
 
 import fr.formation.Classe.Chemin;
-import fr.formation.Classe.Chemin;
 import fr.formation.DAO.IDAOChemin;
 
 public class DAOCheminHibernate extends DAOHibernate implements IDAOChemin {
 	@Override
-	public List findAll() {
+	public List<Chemin> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("select a from Chemin a", Chemin.class).getResultList();
+		return em.createQuery("select c from Chemin c", Chemin.class).getResultList();
 	}
 
 	@Override

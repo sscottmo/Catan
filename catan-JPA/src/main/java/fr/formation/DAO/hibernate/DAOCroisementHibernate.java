@@ -3,14 +3,13 @@ package fr.formation.DAO.hibernate;
 import java.util.List;
 
 import fr.formation.Classe.Croisement;
-import fr.formation.Classe.Croisement;
 import fr.formation.DAO.IDAOCroisement;
 
 public class DAOCroisementHibernate extends DAOHibernate implements IDAOCroisement {
 	@Override
-	public List findAll() {
+	public List<Croisement> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("select a from Croisement a", Croisement.class).getResultList();
+		return em.createQuery("select c from Croisement c", Croisement.class).getResultList();
 	}
 
 	@Override
