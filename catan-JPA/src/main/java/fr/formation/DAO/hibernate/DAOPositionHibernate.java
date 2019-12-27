@@ -2,7 +2,10 @@ package fr.formation.DAO.hibernate;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import fr.formation.Classe.Position;
+import fr.formation.Classe.Type;
 import fr.formation.DAO.IDAOPosition;
 
 public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
@@ -62,4 +65,10 @@ public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
 		delete(lePositionASupprimer);
 	}
 	
+	public List findAll(int min, int max){
+	Query myQuery = em.createQuery("select p from Position p where (p.id>= :minimum and p.id<= :maximum)", Position.class);
+	myQuery.setParameter("minimum", min);
+	myQuery.setParameter("maximum", max);
+	return myQuery.getResultList();
+	}
 }

@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
 import fr.formation.DAO.IDAOPosition;
@@ -140,6 +142,13 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 		// TODO Auto-generated method stub
 		this.deleteById(entity.getId());
 		
+	}
+
+
+	@Override
+	public List<Type> listRand(int min, int max) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

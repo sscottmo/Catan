@@ -21,10 +21,10 @@ public class Chemin {
 	@Column(name="CHEM_ID")
 	private int id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="CHEM_POS_1")
 	private Position pos1;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="CHEM_POS_2")
 	private Position pos2;
 	@ManyToOne

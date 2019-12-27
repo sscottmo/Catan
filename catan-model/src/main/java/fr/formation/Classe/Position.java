@@ -1,12 +1,16 @@
 package fr.formation.Classe;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -24,6 +28,7 @@ public class Position {
 	@Column(name = "POS_VALEUR")
 	@Size(max = 2)
 	private int val;
+	
 	@Column(name = "POS_TYPE")
 	@Enumerated(EnumType.STRING)
 	private Type type;
@@ -31,17 +36,17 @@ public class Position {
 	@OneToOne(mappedBy="posBandit")
 	private Partie bandit;
 
-	@OneToOne(mappedBy="pos1")
-	private Croisement croisement1;
-	@OneToOne(mappedBy="pos2")
-	private Croisement croisement2;
-	@OneToOne(mappedBy="pos3")
-	private Croisement croisement3;
-
-	@OneToOne(mappedBy="pos1")
-	private Croisement chemin1;
-	@OneToOne(mappedBy="pos2")
-	private Croisement chemin2;
+	@OneToMany(mappedBy="pos1")
+	private List<Croisement> croisements1;
+	@OneToMany(mappedBy="pos2")
+	private List<Croisement> croisement2;
+	@OneToMany(mappedBy="pos3")
+	private List<Croisement> croisement3;
+	
+	@OneToMany(mappedBy="pos1")
+	private List<Chemin> chemin1;
+	@OneToMany(mappedBy="pos2")
+	private List<Chemin> chemin2;
 	
 	public int getId() {
 		return id;

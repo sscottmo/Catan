@@ -21,13 +21,13 @@ public class Croisement {
 	@Column(name="CROIS_ID")
 	private int id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="CROIS_POS_1")
 	private Position pos1;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="CROIS_POS_2")
 	private Position pos2;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="CROIS_POS_3")
 	private Position pos3;
 	
@@ -36,9 +36,10 @@ public class Croisement {
 	private Joueur joueur;
 
 	@Column(name="CROIS_VILLE")
-	private boolean ville = false;
+	private Boolean ville = false;
+	
 	@Column(name="CROIS_ACCES_PORT")
-	private boolean accesPort = false;
+	private Boolean accesPort = false;
 	
 	
 	public Position getPos1() {
