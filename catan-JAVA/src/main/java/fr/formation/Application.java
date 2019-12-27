@@ -2,8 +2,8 @@ package fr.formation;
 
 import java.util.Scanner;
 
-import fr.formation.Classe.Position;
 import fr.formation.DAO.IDAOPosition;
+import fr.formation.DAO.hibernate.DAOHibernate;
 import fr.formation.DAO.hibernate.DAOPositionHibernate;
 
 public class Application {
@@ -44,6 +44,8 @@ public class Application {
 //		for (Position p : daoPosition.findAll()) {
 //			System.out.println(p.getId() +" "+ p.getPos() +" "+ p.getVal() +" "+ p.getType());
 //		}
+		
+	DAOHibernate.close();
 	}
 
 }
