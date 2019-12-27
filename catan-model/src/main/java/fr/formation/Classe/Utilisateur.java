@@ -3,6 +3,7 @@ package fr.formation.Classe;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Size;
 @Table(name="utilisateur")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "UTI_TYPE", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorValue("0")
 
 public class Utilisateur {
 	@Id
