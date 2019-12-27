@@ -23,7 +23,7 @@
 		<properties>
 
 			<property name="hibernate.connection.url"
-				value="jdbc:mysql://172.16.44.102/emusic?serverTimezone=UTC" />
+				value="jdbc:mysql://172.16.44.102/catan?serverTimezone=UTC" />
 			<property name="hibernate.connection.driver"
 				value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.user" value="root" />
