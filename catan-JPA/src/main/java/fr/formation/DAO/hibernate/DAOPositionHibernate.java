@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.formation.Classe.Partie;
 import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
 import fr.formation.Classe.TypePort;
@@ -16,6 +17,7 @@ public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
 		// TODO Auto-generated method stub
 		return em.createQuery("select p from Position p", Position.class).getResultList();
 	}
+	
 
 	@Override
 	public Position findById(int id) {

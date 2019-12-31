@@ -18,6 +18,12 @@ import javax.validation.constraints.PositiveOrZero;
 public class Joueur extends Utilisateur {
 	
 	
+	public int getRouteMax() {
+		return routeMax;
+	}
+	public void setRouteMax(int routeMax) {
+		this.routeMax = routeMax;
+	}
 	@ManyToOne
 	@JoinColumn(name="JOU_PARTIE")
 	private Partie partie;
@@ -34,23 +40,23 @@ public class Joueur extends Utilisateur {
 	
 	@Column(name = "JOU_BOIS")
 	@PositiveOrZero
-	private int bois = 0;
+	private Integer bois = 0;
 	
 	@Column(name = "JOU_ARGILE")
 	@PositiveOrZero
-	private int argile = 0;
+	private Integer argile = 0;
 	
 	@Column(name = "JOU_LAINE")
 	@PositiveOrZero
-	private int laine = 0;
+	private Integer laine = 0;
 	
 	@Column(name = "JOU_BLE")
 	@PositiveOrZero
-	private int ble = 0;
+	private Integer ble = 0;
 	
 	@Column(name = "JOU_MINERAI")
 	@PositiveOrZero
-	private int minerai = 0;
+	private Integer minerai = 0;
 	
 	
 	@OneToMany(mappedBy="joueur")
@@ -58,11 +64,11 @@ public class Joueur extends Utilisateur {
 	
 	@Column(name = "JOU_ARMEE")
 	@PositiveOrZero
-	private int armee = 0;
+	private Integer armee = 0;
 	
 	@Column(name = "JOU_ROUTEMAX")
 	@PositiveOrZero
-	private int routeMax = 0;
+	private Integer routeMax = 0;
 	
 	
 	
@@ -85,31 +91,31 @@ public class Joueur extends Utilisateur {
 	public void setMesChemins(List<Chemin> mesChemins) {
 		this.mesChemins = mesChemins;
 	}
-	public int getBois() {
+	public Integer getBois() {
 		return bois;
 	}
 	public void setBois(int bois) {
 		this.bois = bois;
 	}
-	public int getArgile() {
+	public Integer getArgile() {
 		return argile;
 	}
 	public void setArgile(int argile) {
 		this.argile = argile;
 	}
-	public int getLaine() {
+	public Integer getLaine() {
 		return laine;
 	}
 	public void setLaine(int laine) {
 		this.laine = laine;
 	}
-	public int getBle() {
+	public Integer getBle() {
 		return ble;
 	}
 	public void setBle(int ble) {
 		this.ble = ble;
 	}
-	public int getMinerai() {
+	public Integer getMinerai() {
 		return minerai;
 	}
 	public void setMinerai(int minerai) {
@@ -121,13 +127,13 @@ public class Joueur extends Utilisateur {
 	public void setMain(List<Carte> mesCartes) {
 		this.main = mesCartes;
 	}
-	public int getArmee() {
+	public Integer getArmee() {
 		return armee;
 	}
 	public void setArmee(int armee) {
 		this.armee = armee;
 	}
-	public int getRouteLaPlusLongue() {
+	public Integer getRouteLaPlusLongue() {
 		return routeMax;
 	}
 	public void setRouteLaPlusLongue(int routeLaPlusLongue) {

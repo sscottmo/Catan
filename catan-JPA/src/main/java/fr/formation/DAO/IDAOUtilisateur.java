@@ -8,5 +8,5 @@ public interface IDAOUtilisateur extends IDAO<Utilisateur>{
 
 	public List<Utilisateur> commencerPartie();
 	
-	public List<Utilisateur> choisirJoueur();
+	public List<Utilisateur> choisirJoueurs();
 }

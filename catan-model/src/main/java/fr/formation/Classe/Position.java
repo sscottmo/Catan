@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,9 +23,7 @@ public class Position {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="POS_ID")
 	private int id;
-	@Column(name = "POS_POS")
-	@Size(max = 2)
-	private int pos;
+
 	@Column(name = "POS_VALEUR")
 	@Size(max = 2)
 	private int val;
@@ -47,18 +47,18 @@ public class Position {
 	@OneToMany(mappedBy="pos2")
 	private List<Chemin> chemins2;
 	
+	@ManyToOne
+	@JoinColumn(name="POS_PARTIE")
+	private Partie partie;
+
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPos() {
-		return pos;
-	}
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
+	
 	public int getVal() {
 		return val;
 	}
@@ -74,7 +74,6 @@ public class Position {
 	
 	public Position(int id, int pos, int val, Type type) {
 		this.id = id;
-		this.pos = pos;
 		this.val = val;
 		this.type = type;
 	}
@@ -116,6 +115,12 @@ public class Position {
 	}
 	public void setChemins2(List<Chemin> chemins2) {
 		this.chemins2 = chemins2;
+	}
+	public Partie getPartie() {
+		return partie;
+	}
+	public void setPartie(Partie partie) {
+		this.partie = partie;
 	}
 	
 }

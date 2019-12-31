@@ -1,5 +1,6 @@
 package fr.formation.DAO.hibernate;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.formation.Classe.Carte;
@@ -60,6 +61,12 @@ public class DAOCarteHibernate extends DAOHibernate implements IDAOCarte {
 		Carte leCarteASupprimer = new Carte();
 		leCarteASupprimer.setId(id);
 		delete(leCarteASupprimer);
+	}
+	
+	public List<Carte> melangePioche() {
+		List<Carte> pioche = this.findAll();
+		Collections.shuffle(pioche);
+		return pioche;
 	}
 	
 }

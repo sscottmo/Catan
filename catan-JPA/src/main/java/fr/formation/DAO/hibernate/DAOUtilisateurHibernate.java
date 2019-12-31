@@ -3,6 +3,7 @@ package fr.formation.DAO.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.formation.Classe.Joueur;
 import fr.formation.Classe.Utilisateur;
 import fr.formation.DAO.IDAOUtilisateur;
 
@@ -68,17 +69,19 @@ public class DAOUtilisateurHibernate extends DAOHibernate implements IDAOUtilisa
 		return em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
 	}
 	
-	public List<Utilisateur> choisirJoueur(){
+	public List<Utilisateur> choisirJoueurs(){
 		List<Utilisateur> joueurs = new ArrayList <Utilisateur>();
 		joueurs = em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
+
 		while (joueurs.size()>4) {
-			joueurs.remove(joueurs.get(1));
+			joueurs.remove(1);
 		}
-		joueurs.forEach(j -> {j.setRecherchePartie(false);
-								this.save(j);
+		joueurs.forEach(u -> {u.setRecherchePartie(false);
+								this.save(u);
+							
 								});
-		
 		return joueurs;
 	}
+
 	
 }

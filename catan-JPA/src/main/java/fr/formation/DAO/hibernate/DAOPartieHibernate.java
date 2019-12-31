@@ -2,6 +2,9 @@ package fr.formation.DAO.hibernate;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import fr.formation.Classe.Partie;
 import fr.formation.DAO.IDAOPartie;
 
@@ -19,6 +22,7 @@ public class DAOPartieHibernate extends DAOHibernate implements IDAOPartie{
 	}
 
 	@Override
+	@Cascade({CascadeType.MERGE,CascadeType.PERSIST})
 	public Partie save(Partie entity) {
 		// TODO Auto-generated method stub
 

@@ -51,6 +51,9 @@ public class Partie {
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
 	private Position posBandit = new Position(1,1,0,Type.Desert);
+	
+	@OneToMany(mappedBy = "partie")
+	private List<Position> terrain;
 
 	public int getId() {
 		return id;
@@ -122,6 +125,14 @@ public class Partie {
 
 	public void setPosBandit(Position posBandit) {
 		this.posBandit = posBandit;
+	}
+
+	public List<Position> getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(List<Position> terrain) {
+		this.terrain = terrain;
 	}
 	
 	

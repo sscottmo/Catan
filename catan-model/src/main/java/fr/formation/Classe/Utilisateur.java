@@ -15,32 +15,34 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="utilisateur")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Table(name = "utilisateur")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "UTI_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue("0")
-
 public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="UTI_ID")
+	@Column(name = "UTI_ID")
 	private int id;
 
-	@Column(name="UTI_PSEUDO",length = 100, nullable = false)
+	@Column(name = "UTI_PSEUDO", length = 100, nullable = false)
 	@NotEmpty
 	@Size(max = 100)
 	private String nom;
 
-	@Column(name="UTI_MOT_DE_PASSE",length = 100, nullable = false)
+	@Column(name = "UTI_MOT_DE_PASSE", length = 100, nullable = false)
 	@NotEmpty
 	@Size(max = 100)
 	private String motDePasse;
-	
-	@Column(name="UTI_EST_CONNECTE")
+
+	@Column(name = "UTI_EST_CONNECTE")
 	private Boolean estConnecte;
 
-	@Column(name="UTI_RECHERCHE_PARTIE")
+	@Column(name = "UTI_RECHERCHE_PARTIE")
 	private Boolean recherchePartie = false;
+
+	@Column(name = "UTI_TYPE", insertable = false, updatable = false)
+	private int type;
 
 	public int getId() {
 		return id;
@@ -81,6 +83,20 @@ public class Utilisateur {
 	public void setRecherchePartie(boolean recherchePartie) {
 		this.recherchePartie = recherchePartie;
 	}
-	
-	
+
+	public Boolean getEstConnecte() {
+		return estConnecte;
+	}
+
+	public void setEstConnecte(Boolean estConnecte) {
+		this.estConnecte = estConnecte;
+	}
+
+	public Boolean getRecherchePartie() {
+		return recherchePartie;
+	}
+
+	public void setRecherchePartie(Boolean recherchePartie) {
+		this.recherchePartie = recherchePartie;
+	}
 }
