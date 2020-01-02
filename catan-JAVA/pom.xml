@@ -11,8 +11,8 @@
   
   	<dependencies>
 		<dependency>
-			<groupId>fr.catan</groupId>
-			<artifactId>catan-JPA</artifactId>
+			<groupId>fr.formation</groupId>
+			<artifactId>catan-data-JPA</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
