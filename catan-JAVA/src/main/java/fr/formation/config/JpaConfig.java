@@ -18,9 +18,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("fr.formation.DAO")
+@EnableJpaRepositories("fr.formation.dao")
 @PropertySource("classpath:data-source.properties")
 public class JpaConfig {
 
