@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Partie;
 import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
@@ -11,6 +13,7 @@ import fr.formation.Classe.TypePort;
 import fr.formation.Classe.TypeTerre;
 import fr.formation.DAO.IDAOPosition;
 
+@Repository
 public class DAOPositionHibernate extends DAOHibernate implements IDAOPosition {
 	@Override
 	public List<Position> findAll() {

@@ -50,7 +50,7 @@ public class Partie {
 	
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
-	private Position posBandit = new Position(1,1,0,Type.Desert);
+	private Position posBandit;
 	
 	@OneToMany(mappedBy = "partie")
 	private List<Position> terrain;

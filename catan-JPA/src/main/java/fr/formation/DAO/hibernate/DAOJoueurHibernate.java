@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Couleur;
 import fr.formation.Classe.Joueur;
 import fr.formation.Classe.Utilisateur;
 import fr.formation.DAO.IDAOJoueur;
 
+@Repository
 public class DAOJoueurHibernate extends DAOHibernate implements IDAOJoueur {
 	@Override
 	public List<Joueur> findAll() {

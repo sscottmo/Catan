@@ -3,10 +3,13 @@ package fr.formation.DAO.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Joueur;
 import fr.formation.Classe.Utilisateur;
 import fr.formation.DAO.IDAOUtilisateur;
 
+@Repository
 public class DAOUtilisateurHibernate extends DAOHibernate implements IDAOUtilisateur{
 	@Override
 	public List<Utilisateur> findAll() {
