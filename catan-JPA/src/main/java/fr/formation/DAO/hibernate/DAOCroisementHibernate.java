@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.formation.Classe.Croisement;
 import fr.formation.DAO.IDAOCroisement;
+
 @Repository
 public class DAOCroisementHibernate extends DAOHibernate implements IDAOCroisement {
 	@Override
