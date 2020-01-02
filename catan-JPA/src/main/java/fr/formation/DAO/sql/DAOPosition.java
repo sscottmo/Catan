@@ -96,9 +96,9 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 			connection.setAutoCommit(false);
 			PreparedStatement myNewStatement;
 			if (entity.getId() == 0) {
-			myNewStatement = connection.prepareStatement("INSERT INTO position ( POS_VALEUR, POS_TYPE) VALUES (?,?,?)");
+			myNewStatement = connection.prepareStatement("INSERT INTO position (POS_VALEUR, POS_TYPE) VALUES (?,?,?)");
 			} else {
-				myNewStatement = connection.prepareStatement("POS_VALEUR = ?, POS_TYPE = ? WHERE POS_ID = ?");
+				myNewStatement = connection.prepareStatement("UPDATE position SET POS_VALEUR = ?, POS_TYPE = ? WHERE POS_ID = ?");
 				myNewStatement.setInt(3,entity.getId());
 			}
 			myNewStatement.setInt(1, entity.getVal());
@@ -142,6 +142,8 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 		
 	}
 
+
+	
 
 	@Override
 	public void attributionDesTypes() {
