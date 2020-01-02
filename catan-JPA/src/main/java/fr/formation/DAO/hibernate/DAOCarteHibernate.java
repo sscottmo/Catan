@@ -3,9 +3,12 @@ package fr.formation.DAO.hibernate;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Carte;
 import fr.formation.DAO.IDAOCarte;
 
+@Repository
 public class DAOCarteHibernate extends DAOHibernate implements IDAOCarte {
 	@Override
 	public List<Carte> findAll() {

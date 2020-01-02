@@ -1,13 +1,16 @@
 package fr.formation.DAO.hibernate;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Croisement;
 import fr.formation.DAO.IDAOCroisement;
-
+@Repository
 public class DAOCroisementHibernate extends DAOHibernate implements IDAOCroisement {
 	@Override
 	public List<Croisement> findAll() {

@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.stereotype.Repository;
 
 import fr.formation.Classe.Partie;
 import fr.formation.DAO.IDAOPartie;
 
+@Repository
 public class DAOPartieHibernate extends DAOHibernate implements IDAOPartie{
 	@Override
 	public List<Partie> findAll() {

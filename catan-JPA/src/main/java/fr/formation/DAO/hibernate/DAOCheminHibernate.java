@@ -2,9 +2,12 @@ package fr.formation.DAO.hibernate;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.Classe.Chemin;
 import fr.formation.DAO.IDAOChemin;
 
+@Repository
 public class DAOCheminHibernate extends DAOHibernate implements IDAOChemin {
 	@Override
 	public List<Chemin> findAll() {
