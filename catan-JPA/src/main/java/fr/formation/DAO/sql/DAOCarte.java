@@ -137,4 +137,11 @@ public class DAOCarte extends DAOConnectionSQL implements IDAOCarte {
 	}
 
 
+	@Override
+	public List<Carte> melangePioche() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

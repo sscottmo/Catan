@@ -69,7 +69,6 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 							Position position = new Position();
 							position.setId(myResult.getInt("POS_ID"));
 							position.setType(Enum.valueOf(Type.class, myResult.getString("POS_TYPE")));
-							position.setPos(myResult.getInt("POS_POS"));
 							position.setVal(myResult.getInt("POS_VALEUR"));
 							return position;
 						}
@@ -97,14 +96,13 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 			connection.setAutoCommit(false);
 			PreparedStatement myNewStatement;
 			if (entity.getId() == 0) {
-			myNewStatement = connection.prepareStatement("INSERT INTO position (POS_POS, POS_VALEUR, POS_TYPE) VALUES (?,?,?)");
+			myNewStatement = connection.prepareStatement("INSERT INTO position ( POS_VALEUR, POS_TYPE) VALUES (?,?,?)");
 			} else {
-				myNewStatement = connection.prepareStatement("UPDATE position SET POS_POS = ?, POS_VALEUR = ?, POS_TYPE = ? WHERE POS_ID = ?");
-				myNewStatement.setInt(4,entity.getId());
+				myNewStatement = connection.prepareStatement("POS_VALEUR = ?, POS_TYPE = ? WHERE POS_ID = ?");
+				myNewStatement.setInt(3,entity.getId());
 			}
-			myNewStatement.setInt(1, entity.getPos());
-			myNewStatement.setInt(2, entity.getVal());
-			myNewStatement.setString(3, entity.getType().name());
+			myNewStatement.setInt(1, entity.getVal());
+			myNewStatement.setString(2, entity.getType().name());
 			
 			myNewStatement.execute();
 			connection.commit();
@@ -146,9 +144,9 @@ public class DAOPosition extends DAOConnectionSQL implements IDAOPosition {
 
 
 	@Override
-	public List<Type> listRand(int min, int max) {
+	public void attributionDesTypes() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 

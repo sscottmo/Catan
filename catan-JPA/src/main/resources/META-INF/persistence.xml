@@ -14,9 +14,6 @@
 		<class>fr.formation.Classe.Partie</class>
 		<class>fr.formation.Classe.Position</class>
 		<class>fr.formation.Classe.Utilisateur</class>
-		<class>fr.formation.Classe.CarteDev</class>
-		<class>fr.formation.Classe.Couleur</class>
-		<class>fr.formation.Classe.Type</class>
 		
 		
 		
