@@ -3,6 +3,8 @@ package fr.formation;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import fr.formation.Classe.Partie;
 import fr.formation.Classe.Position;
 import fr.formation.DAO.IDAOCarte;
@@ -18,13 +20,14 @@ import fr.formation.DAO.hibernate.DAOJoueurHibernate;
 import fr.formation.DAO.hibernate.DAOPartieHibernate;
 import fr.formation.DAO.hibernate.DAOPositionHibernate;
 import fr.formation.DAO.hibernate.DAOUtilisateurHibernate;
-import fr.formation.DAO.sql.DAOCarte;
+import fr.formation.config.AppConfig;
 
 public class Application {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
+		AnnotationConfigApplicationContext myContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		long startTime = System.currentTimeMillis();
 
 		IDAOUtilisateur daoUtilisateur = new DAOUtilisateurHibernate();
