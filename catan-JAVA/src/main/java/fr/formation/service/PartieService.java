@@ -3,6 +3,7 @@ package fr.formation.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -84,41 +85,36 @@ public class PartieService {
 	public void affecterTerrain(Partie partie) {
 		this.definitionDesPorts();
 		List<Position> positions = daoPosition.findByIdLessThan(38);
-		Set<Croisement> croisements = new Set<Croisement>();
-		Set<Chemin> chemins = null;
+		Set<Croisement> croisements = new HashSet<Croisement>();
+		Set<Chemin> chemins = new HashSet<Chemin>();
 		positions.forEach(p -> {
 			p.setId(0);
 			p.setPartie(partie);
-			if (p.getCroisements1().size()>0) {
 			p.getCroisements1().forEach(c -> {
 				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
-			});}
-			if (p.getCroisements2().size()>0) {
+			});
 			p.getCroisements2().forEach(c -> {
 				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
-			});}
-			if (p.getCroisements3().size()>0) {
+			});
 			p.getCroisements3().forEach(c -> {
 				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
-			});}
-			if (p.getChemins1().size()>0) {
+			});
 			p.getChemins1().forEach(c -> {
 				c.setId(0);
 				c.setPartie(partie);
 				chemins.add(c);
-			});}
-			if (p.getChemins2().size()>0) {
+			});
 			p.getChemins2().forEach(c -> {
 				c.setId(0);
 				c.setPartie(partie);
 				chemins.add(c);
-			});}
+			});
 
 		});
 
@@ -192,14 +188,16 @@ public class PartieService {
 	@Transactional
 	public List<Carte> melangePioche() {
 		List<Carte> pioche = daoCarte.findByIdLessThan(26);
-		pioche.forEach(c -> c.setId(0));
 		Collections.shuffle(pioche);
+		pioche.forEach(c -> c.setId(0));
 		return pioche;
 	}
 
 	@Transactional
 	public void affecterPioche(Partie partie) {
-		partie.setPioche(this.melangePioche());
+		List<Carte> pioche = this.melangePioche();
+		pioche.forEach(c-> c.setPartie(partie));		
+		partie.setPioche(pioche);
 	}
 
 	@Transactional
