@@ -1,5 +1,6 @@
 package fr.formation.Classe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +17,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="position")
 public class Position {
@@ -24,6 +28,9 @@ public class Position {
 	@Column(name="POS_ID")
 	private int id;
 
+	@Column(name="POS_POS")
+	private int pos;
+	
 	@Column(name = "POS_VALEUR")
 	@Size(max = 2)
 	private int val;
@@ -33,21 +40,28 @@ public class Position {
 	private Type type;
 	
 	@OneToOne(mappedBy="posBandit")
+	@Cascade(CascadeType.ALL)
 	private Partie bandit;
 
 	@OneToMany(mappedBy="pos1")
+	@Cascade(CascadeType.ALL)
 	private List<Croisement> croisements1;
 	@OneToMany(mappedBy="pos2")
+	@Cascade(CascadeType.ALL)
 	private List<Croisement> croisements2;
 	@OneToMany(mappedBy="pos3")
+	@Cascade(CascadeType.ALL)
 	private List<Croisement> croisements3;
 	
 	@OneToMany(mappedBy="pos1")
+	@Cascade(CascadeType.ALL)
 	private List<Chemin> chemins1;
 	@OneToMany(mappedBy="pos2")
+	@Cascade(CascadeType.ALL)
 	private List<Chemin> chemins2;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="POS_PARTIE")
 	private Partie partie;
 
@@ -122,5 +136,17 @@ public class Position {
 	public void setPartie(Partie partie) {
 		this.partie = partie;
 	}
-	
-}
+	public List<Croisement> getLesCroisements(){
+		List<Croisement> croisements = new ArrayList<Croisement>();
+		croisements.addAll(croisements1);
+		croisements.addAll(croisements2);
+		croisements.addAll(croisements3);
+		return croisements;
+	}
+	public List<Croisement> clearCroisements(List<Croisement> croisements){
+		while (croisements.size() > 0) {
+			croisements.remove(0);
+		}
+		return croisements;
+	}
+} 

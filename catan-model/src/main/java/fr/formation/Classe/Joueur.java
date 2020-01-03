@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.PositiveOrZero;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @DiscriminatorValue("1")
@@ -25,6 +28,7 @@ public class Joueur extends Utilisateur {
 		this.routeMax = routeMax;
 	}
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="JOU_PARTIE")
 	private Partie partie;
 	
@@ -33,9 +37,11 @@ public class Joueur extends Utilisateur {
 	private Couleur couleur;
 	
 	@OneToMany(mappedBy = "joueur")
+	@Cascade(CascadeType.ALL)
 	private List<Croisement> mesCroisements;
 	
 	@OneToMany(mappedBy = "joueur")
+	@Cascade(CascadeType.ALL)
 	private List<Chemin> mesChemins;
 	
 	@Column(name = "JOU_BOIS")
@@ -60,6 +66,7 @@ public class Joueur extends Utilisateur {
 	
 	
 	@OneToMany(mappedBy="joueur")
+	@Cascade(CascadeType.ALL)
 	private List<Carte> main;
 	
 	@Column(name = "JOU_ARMEE")
@@ -73,6 +80,27 @@ public class Joueur extends Utilisateur {
 	
 	
 
+	public void setBois(Integer bois) {
+		this.bois = bois;
+	}
+	public void setArgile(Integer argile) {
+		this.argile = argile;
+	}
+	public void setLaine(Integer laine) {
+		this.laine = laine;
+	}
+	public void setBle(Integer ble) {
+		this.ble = ble;
+	}
+	public void setMinerai(Integer minerai) {
+		this.minerai = minerai;
+	}
+	public void setArmee(Integer armee) {
+		this.armee = armee;
+	}
+	public void setRouteMax(Integer routeMax) {
+		this.routeMax = routeMax;
+	}
 	public Couleur getCouleur() {
 		return couleur;
 	}

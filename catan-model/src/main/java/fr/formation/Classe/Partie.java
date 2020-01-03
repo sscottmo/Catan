@@ -1,6 +1,7 @@
 package fr.formation.Classe;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.PositiveOrZero;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @Table(name = "Partie")
@@ -23,9 +27,11 @@ public class Partie {
 	private int id;
 	
 	@OneToMany(mappedBy = "partie")
+	@Cascade(CascadeType.ALL)
 	private List<Joueur> joueurs;
 	
 	@OneToMany(mappedBy = "partie")
+	@Cascade(CascadeType.ALL)
 	private List<Carte> pioche;
 	
 	@Column(name = "PART_BOIS")
@@ -50,10 +56,20 @@ public class Partie {
 	
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
+	@Cascade(CascadeType.ALL)
 	private Position posBandit;
 	
 	@OneToMany(mappedBy = "partie")
+	@Cascade(CascadeType.ALL)
 	private List<Position> terrain;
+	
+	@OneToMany(mappedBy = "partie")
+	@Cascade(CascadeType.ALL)
+	private Set<Croisement> croisements;
+	
+	@OneToMany(mappedBy = "partie")
+	@Cascade(CascadeType.ALL)
+	private Set<Chemin> chemins;
 
 	public int getId() {
 		return id;
@@ -134,6 +150,24 @@ public class Partie {
 	public void setTerrain(List<Position> terrain) {
 		this.terrain = terrain;
 	}
+
+	public Set<Croisement> getCroisements() {
+		return croisements;
+	}
+
+	public void setCroisements(Set<Croisement> croisements) {
+		this.croisements = croisements;
+	}
+
+	public Set<Chemin> getChemins() {
+		return chemins;
+	}
+
+	public void setChemins(Set<Chemin> chemins) {
+		this.chemins = chemins;
+	}
+
+
 	
 	
 }

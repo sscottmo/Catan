@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "Chemin")
 public class Chemin {
@@ -22,15 +25,29 @@ public class Chemin {
 	private int id;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CHEM_POS_1")
 	private Position pos1;
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CHEM_POS_2")
 	private Position pos2;
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CHEM_JOUEUR")
 	private Joueur joueur;
+	
+	@ManyToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name="CHEM_PARTIE")
+	private Partie partie;
 
+	public Partie getPartie() {
+		return partie;
+	}
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
 	public Position getPos1() {
 		return pos1;
 	}

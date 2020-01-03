@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "Croisement")
 public class Croisement {
@@ -22,16 +25,20 @@ public class Croisement {
 	private int id;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_1")
 	private Position pos1;
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_2")
 	private Position pos2;
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_3")
 	private Position pos3;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "CROIS_JOUEUR")
 	private Joueur joueur;
 
@@ -41,9 +48,32 @@ public class Croisement {
 	@Column(name="CROIS_ACCES_PORT")
 	private Boolean accesPort = false;
 	
+	@ManyToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name="CROIS_PARTIE")
+	private Partie partie;
+	
 	
 	public Position getPos1() {
 		return pos1;
+	}
+	public Boolean getVille() {
+		return ville;
+	}
+	public Partie getPartie() {
+		return partie;
+	}
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
+	public void setVille(Boolean ville) {
+		this.ville = ville;
+	}
+	public Boolean getAccesPort() {
+		return accesPort;
+	}
+	public void setAccesPort(Boolean accesPort) {
+		this.accesPort = accesPort;
 	}
 	public void setPos1(Position pos1) {
 		this.pos1 = pos1;

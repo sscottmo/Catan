@@ -8,7 +8,5 @@ import fr.formation.Classe.Utilisateur;
 
 public interface IDAOUtilisateur extends JpaRepository<Utilisateur,Integer>{
 
-	public List<Utilisateur> commencerPartie();
-	
-	public List<Utilisateur> choisirJoueurs();
+
 }

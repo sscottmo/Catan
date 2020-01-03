@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @Table(name = "Carte")
@@ -27,15 +30,29 @@ public class Carte {
 	
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CARTE_JOUEUR")
 	private Joueur joueur = null;
 	
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CARTE_PARTIE")
 	private Partie partie;
 	
 	
 	
+	public Joueur getJoueur() {
+		return joueur;
+	}
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
+	}
+	public Partie getPartie() {
+		return partie;
+	}
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
 	public int getId() {
 		return id;
 	}
