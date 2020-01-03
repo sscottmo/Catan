@@ -13,9 +13,9 @@ import fr.formation.DAO.IDAOCroisement;
 import fr.formation.DAO.IDAOJoueur;
 import fr.formation.DAO.IDAOPartie;
 import fr.formation.DAO.IDAOPosition;
-import fr.formation.DAO.IDAOUtilisateur;
 import fr.formation.config.AppConfig;
 import fr.formation.service.PartieService;
+import fr.formation.service.UtilisateurService;
 
 @Component
 public class Application {

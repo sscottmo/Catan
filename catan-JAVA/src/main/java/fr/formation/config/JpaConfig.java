@@ -40,13 +40,13 @@ public class JpaConfig {
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(BasicDataSource dataSource) {
-		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		emf.setDataSource(dataSource);
-		emf.setPackagesToScan("fr.formation.Classe");
-		emf.setJpaVendorAdapter(vendorAdapter);
-		emf.setJpaProperties(this.hibernateProperties());
-		return emf;
+	LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+	JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+	emf.setDataSource(dataSource);
+	emf.setPackagesToScan("fr.formation.Classe");
+	emf.setJpaVendorAdapter(vendorAdapter);
+	emf.setJpaProperties(this.hibernateProperties());
+	return emf;
 	}
 
 	private Properties hibernateProperties() {
