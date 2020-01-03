@@ -14,7 +14,6 @@ import fr.formation.DAO.IDAOJoueur;
 import fr.formation.DAO.IDAOPartie;
 import fr.formation.DAO.IDAOPosition;
 import fr.formation.DAO.IDAOUtilisateur;
-import fr.formation.DAO.hibernate.DAOHibernate;
 import fr.formation.config.AppConfig;
 
 @Component
@@ -76,7 +75,6 @@ public class Application {
 //					 joueurs.forEach(j-> {
 //				 System.out.println(j.getNom()+" "+j.getCouleur()+" "+j.getLaine());
 //			 });
-			DAOHibernate.close();
 		}	
 	
 	public static void main(String[] args) {

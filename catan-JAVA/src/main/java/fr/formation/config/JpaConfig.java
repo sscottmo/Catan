@@ -31,7 +31,7 @@ public class JpaConfig {
 	@Bean
 	public BasicDataSource datasource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setDriverClassName(env.getProperty("src.driver"));
 		dataSource.setUrl(env.getProperty("sql.url"));
 		dataSource.setUsername(env.getProperty("sql.username"));
 		dataSource.setPassword(env.getProperty("sql.mdp"));
