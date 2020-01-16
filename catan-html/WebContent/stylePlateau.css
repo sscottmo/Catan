@@ -1,0 +1,148 @@
+@charset "ISO-8859-1";
+
+h1 {
+	padding: 8px 37.5px;
+	font-size: 48px;
+	background-color: #ba7f92;
+	text-align: center;
+	margin-top: 0px;
+}
+
+.hexagon.ocean {
+	width: 150px;
+	height: 82.5px;
+	background: blue;
+	position: relative;
+}
+
+.hexagon.ocean:before {
+	content: "";
+	position: absolute;
+	top: -37.5px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-bottom: 37.5px solid blue;
+}
+
+.hexagon.ocean:after {
+	content: "";
+	position: absolute;
+	bottom: -37.5px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-top: 37.5px solid blue;
+}
+
+.hexagon.terre {
+	width: 150px;
+	height: 82.5px;
+	background: green;
+	position: relative;
+}
+
+.hexagon.terre:before {
+	content: "";
+	position: absolute;
+	top: -37.5px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-bottom: 37.5px solid green;
+}
+
+.hexagon.terre:after {
+	content: "";
+	position: absolute;
+	bottom: -37.5px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-top: 37.5px solid green;
+}
+
+div {
+	display: inline-block;
+}
+
+.plateau {
+	position: relative;
+	margin-top: 36px;
+	margin-bottom: 36px;
+	display: block;
+	text-align: center;
+}
+
+.vide {
+	width: 75px;
+}
+
+#ligne1 {
+	margin-top: 150px;
+}
+
+.hexagon.terre:hover, .hexagon.terre:hover:before, .hexagon.terre:hover:after
+	{
+	transition: all 0.3s ease-in-out;
+}
+
+.hexagon.terre:hover {
+	transform: scale(1);
+	background: #143b12;
+	z-index: 10;
+}
+
+.hexagon.terre:hover:before {
+	border-bottom-color: #143b12;
+}
+
+.hexagon.terre:hover:after {
+	border-top-color: #143b12;
+}
+
+th, td {
+	padding: 15px;
+	width: 150px;
+	text-align: center;
+}
+
+#menu {
+	position: fixed;
+	z-index: 50;
+	top: 0;
+	left: 0;
+}
+
+#joueurs {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 50;
+	width: 300px;
+}
+#mesCartes {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 50;
+	width: 15%;
+}
+#mesRessources {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 50;
+	width: 10%;
+}
+body{
+	background-color: #b0c7f5
+}

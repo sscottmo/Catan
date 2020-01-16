@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<base href="/catan-html/" />
+		<meta charset="ISO-8859-1">
+		<meta name="Plateau de Jeu " content="Colon de Catan"/>
+		<meta name="viewport" content="width=devide-width, initial-scale=1" />
+		<title>Partie en cours ! </title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="stylePlateau.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>Plateau de jeu !</h1>
+	
+	<section id="menu">
+	<div class="btn-group" role="group">
+  		<button type="button" class="btn btn-secondary">Construire</button>
+  		<button type="button" class="btn btn-secondary">Fin de tour</button>
+	</div>
+	</section>
+	
+	<section id="ligne1" class="plateau">
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+	</section>
+	<section id="ligne2" class="plateau">
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+	</section>
+	<section id="ligne3" class="plateau">
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+	</section>	
+	<section id="ligne4" class="plateau">
+		<div class="hexagon ocean"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon ocean"></div>
+	</section>
+	<section id="ligne5" class="plateau">
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+	</section>
+	<section id="ligne6" class="plateau">
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon terre"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+	</section>
+	<section id="ligne7" class="plateau">
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="hexagon ocean"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+		<div class="vide"></div>
+	</section>
+		
+	
+		<table id="joueurs" class="table table-striped table-dark">
+  			<thead class="thead-dark">
+    			<tr>
+      				<th scope="col">Joueur</th>
+     				<th scope="col">Cartes</th>
+      				<th scope="col">Ressources</th>
+      				<th scope="col">Points</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+    			<tr>
+      				<th scope="row">Orange</th>
+      				<td>0</td>
+      				<td>0</td>
+      				<td><b>0</b></td>
+    			</tr>
+    			<tr>
+      				<th scope="row">Violet</th>
+      				<td>0</td>
+      				<td>0</td>
+      				<td><b>0</b></td>
+    			</tr>
+    			<tr>
+      				<th scope="row">Cyan</th>
+      				<td>0</td>
+      				<td>0</td>
+      				<td><b>0</b></td>
+    			</tr>
+    			<tr>
+      				<th scope="row">Marron</th>
+      				<td>0</td>
+      				<td>0</td>
+      				<td><b>0</b></td>
+    			</tr>
+  			</tbody>
+		</table>
+	<table id="mesCartes" class="table table-striped table-dark">
+  			<thead class="thead-dark">
+  				<tr>
+      				<th colspan="2" scope="colgroup" >Mes cartes developpement</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  				<tr>
+      				<th class="col-2" scope="col">Type</th>
+     				<th class="col-1"scope="col">Nombre</th>
+    			</tr>
+    			<tr>
+      				<td>Chevalier</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Point De Victoire</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Constructeur</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Decouverte</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Monopole</td>
+      				<td>0</td>
+    			</tr>
+  			</tbody>
+		</table>
+		
+	<table id="mesRessources" class="table table-striped table-dark">
+  			<thead class="thead-dark">
+  				<tr>
+      				<th colspan="2" scope="colgroup" >Mes ressources</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  				<tr>
+      				<th class="col-1" scope="col">Type</th>
+     				<th class="col-1"scope="col">Nombre</th>
+    			</tr>
+    			<tr>
+      				<td>Bois</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Argile</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Blé</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Minerai</td>
+      				<td>0</td>
+    			</tr>
+    			<tr>
+      				<td>Laine</td>
+      				<td>0</td>
+    			</tr>
+  			</tbody>
+		</table>
+	
+
+</body>
+</html>
