@@ -1,205 +1,362 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<base href="/catan-html/" />
-		<meta charset="ISO-8859-1">
-		<meta name="Plateau de Jeu " content="Colon de Catan"/>
-		<meta name="viewport" content="width=devide-width, initial-scale=1" />
-		<title>Partie en cours ! </title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link href="stylePlateau.css" rel="stylesheet" type="text/css" />
+<base href="/catan-html/" />
+<meta charset="ISO-8859-1">
+<meta name="Plateau de Jeu " content="Colon de Catan" />
+<meta name="viewport" content="width=devide-width, initial-scale=1" />
+<title>Partie en cours !</title>
+<script defer src="plateauJS.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link href="stylePlateau.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<h1>Plateau de jeu !</h1>
-	
+
 	<section id="menu">
-	<div class="btn-group" role="group">
-  		<button type="button" class="btn btn-secondary">Construire</button>
-  		<button type="button" class="btn btn-secondary">Fin de tour</button>
-	</div>
+		<div class="btn-group-vertical" role="group">
+			<button type="button" class="btn btn-secondary btn-lg">Fin
+				de tour</button>
+			<button type="button"
+				class="btn btn-secondary btn-lg dropdown-toggle dropdown">Construire</button>
+			<button type="button"
+				class="btn btn-secondary btn-lg dropdown-content">Route</button>
+			<button type="button"
+				class="btn btn-secondary btn-lg dropdown-content">Colonie</button>
+			<button type="button"
+				class="btn btn-secondary btn-lg dropdown-content">Ville</button>
+		</div>
 	</section>
-	
-	<section id="ligne1" class="plateau">
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
+	<section id=plateau>
+		<section id="ligne1" class="plateau">
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div id="20" class="hexagon ocean"></div>
+			<div id="30" class="hexagon ocean"></div>
+			<div id="21" class="hexagon ocean"></div>
+			<div id="31" class="hexagon ocean"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+		</section>
+		<section id="ligne2" class="plateau">
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div id="29" class="hexagon ocean"></div>
+			<div id="19" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="8" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="9" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement hautdroite"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin droite"></p>
+			</div>
+			<div id="22" class="hexagon ocean"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+		</section>
+		<section id="ligne3" class="plateau">
+			<div class="vide"></div>
+			<div id="28" class="hexagon ocean"></div>
+			<div id="18" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="7" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="2" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="10" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement hautdroite"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin droite"></p>
+			</div>
+			<div id="32" class="hexagon ocean"></div>
+			<div class="vide"></div>
+		</section>
+		<section id="ligne4" class="plateau">
+			<div id="37" class="hexagon ocean"></div>
+			<div id="17" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement basgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin gauchebas"></p>
+			</div>
+			<div id="6" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="1" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="3" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="11" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement hautdroite"></p>
+				<p class="croisement basdroite"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin droite"></p>
+				<p class="chemin droitebas"></p>
+			</div>
+			<div id="23" class="hexagon ocean"></div>
+		</section>
+		<section id="ligne5" class="plateau">
+			<div class="vide"></div>
+			<div id="27" class="hexagon ocean"></div>
+			<div id="16" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement basgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin gauchebas"></p>
+			</div>
+			<div id="5" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="4" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+			</div>
+			<div id="12" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement hautdroite"></p>
+				<p class="croisement basdroite"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin droite"></p>
+				<p class="chemin droitebas"></p>
+			</div>
+			<div id="33" class="hexagon ocean"></div>
+			<div class="vide"></div>
+		</section>
+		<section id="ligne6" class="plateau">
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div id="36" class="hexagon ocean"></div>
+			<div id="15" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement bas"></p>
+				<p class="croisement basgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin gauchebas"></p>
+				<p class="chemin droitebas"></p>
+			</div>
+			<div id="14" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement bas"></p>
+				<p class="croisement basgauche"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin gauchebas"></p>
+				<p class="chemin droitebas"></p>
+			</div>
+			<div id="13" class="hexagon terre">
+				<p class="croisement haut"></p>
+				<p class="croisement hautgauche"></p>
+				<p class="croisement hautdroite"></p>
+				<p class="croisement bas"></p>
+				<p class="croisement basgauche"></p>
+				<p class="croisement basdroite"></p>
+				<p class="chemin gauche"></p>
+				<p class="chemin gauchehaut"></p>
+				<p class="chemin droitehaut"></p>
+				<p class="chemin droite"></p>
+				<p class="chemin droitebas"></p>
+				<p class="chemin gauchebas"></p>
+			</div>
+			<div id="24" class="hexagon ocean"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+		</section>
+		<section id="ligne7" class="plateau">
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div id="26" class="hexagon ocean"></div>
+			<div id="35" class="hexagon ocean"></div>
+			<div id="25" class="hexagon ocean"></div>
+			<div id="34" class="hexagon ocean"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+			<div class="vide"></div>
+		</section>
 	</section>
-	<section id="ligne2" class="plateau">
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-	</section>
-	<section id="ligne3" class="plateau">
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-	</section>	
-	<section id="ligne4" class="plateau">
-		<div class="hexagon ocean"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon ocean"></div>
-	</section>
-	<section id="ligne5" class="plateau">
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-	</section>
-	<section id="ligne6" class="plateau">
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon terre"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-	</section>
-	<section id="ligne7" class="plateau">
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="hexagon ocean"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-		<div class="vide"></div>
-	</section>
-		
-	
-		<table id="joueurs" class="table table-striped table-dark">
-  			<thead class="thead-dark">
-    			<tr>
-      				<th scope="col">Joueur</th>
-     				<th scope="col">Cartes</th>
-      				<th scope="col">Ressources</th>
-      				<th scope="col">Points</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-    			<tr>
-      				<th scope="row">Orange</th>
-      				<td>0</td>
-      				<td>0</td>
-      				<td><b>0</b></td>
-    			</tr>
-    			<tr>
-      				<th scope="row">Violet</th>
-      				<td>0</td>
-      				<td>0</td>
-      				<td><b>0</b></td>
-    			</tr>
-    			<tr>
-      				<th scope="row">Cyan</th>
-      				<td>0</td>
-      				<td>0</td>
-      				<td><b>0</b></td>
-    			</tr>
-    			<tr>
-      				<th scope="row">Marron</th>
-      				<td>0</td>
-      				<td>0</td>
-      				<td><b>0</b></td>
-    			</tr>
-  			</tbody>
-		</table>
+
+	<table id="joueurs" class="table table-striped table-dark">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Joueur</th>
+				<th scope="col">Cartes</th>
+				<th scope="col">Ressources</th>
+				<th scope="col">Points</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">Orange</th>
+				<td>0</td>
+				<td>0</td>
+				<td><b>0</b></td>
+			</tr>
+			<tr>
+				<th scope="row">Violet</th>
+				<td>0</td>
+				<td>0</td>
+				<td><b>0</b></td>
+			</tr>
+			<tr>
+				<th scope="row">Cyan</th>
+				<td>0</td>
+				<td>0</td>
+				<td><b>0</b></td>
+			</tr>
+			<tr>
+				<th scope="row">Marron</th>
+				<td>0</td>
+				<td>0</td>
+				<td><b>0</b></td>
+			</tr>
+		</tbody>
+	</table>
 	<table id="mesCartes" class="table table-striped table-dark">
-  			<thead class="thead-dark">
-  				<tr>
-      				<th colspan="2" scope="colgroup" >Mes cartes developpement</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<tr>
-      				<th class="col-2" scope="col">Type</th>
-     				<th class="col-1"scope="col">Nombre</th>
-    			</tr>
-    			<tr>
-      				<td>Chevalier</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Point De Victoire</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Constructeur</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Decouverte</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Monopole</td>
-      				<td>0</td>
-    			</tr>
-  			</tbody>
-		</table>
-		
+		<thead class="thead-dark">
+			<tr>
+				<th colspan="2" scope="colgroup">Mes cartes developpement</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th class="col-2" scope="col">Type</th>
+				<th class="col-1" scope="col">Nombre</th>
+			</tr>
+			<tr>
+				<td>Chevalier</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Point De Victoire</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constructeur</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Decouverte</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Monopole</td>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table>
+
 	<table id="mesRessources" class="table table-striped table-dark">
-  			<thead class="thead-dark">
-  				<tr>
-      				<th colspan="2" scope="colgroup" >Mes ressources</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<tr>
-      				<th class="col-1" scope="col">Type</th>
-     				<th class="col-1"scope="col">Nombre</th>
-    			</tr>
-    			<tr>
-      				<td>Bois</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Argile</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Blé</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Minerai</td>
-      				<td>0</td>
-    			</tr>
-    			<tr>
-      				<td>Laine</td>
-      				<td>0</td>
-    			</tr>
-  			</tbody>
-		</table>
-	
+		<thead class="thead-dark">
+			<tr>
+				<th colspan="2" scope="colgroup">Mes ressources</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th class="col-1" scope="col">Type</th>
+				<th class="col-1" scope="col">Nombre</th>
+			</tr>
+			<tr>
+				<td>Bois</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Argile</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Blé</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Minerai</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Laine</td>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table>
+
 
 </body>
 </html>
