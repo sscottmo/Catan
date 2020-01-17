@@ -33,41 +33,32 @@ document.querySelectorAll('form a')
 		});
 
 
-const getPromesse = (arg) => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			if (arg) {
-				resolve("Ok !");
-			} else {
-				reject("ERREUR ! ERREUR ! ERREUR !");
-			}
-		}, 3000);
-	});
+const ajoutUtilisateur = (Utilisateur, listUtilisateur) => {
+	listUtilisateur.push(Utilisateur);
 }
 
-
-//getPromesse(false).then(msg => console.log(msg))
-//				.catch(err => console.error(err));
-
-const getPromesseAsync = async () => {
-/* OU async function getPromesseAsync() { */
-	try {
-		let resultatRequete = await getPromesse(false);
-		console.log(resultatRequete)
-	}
-	catch (e) {
-		console.error(e)
-	}
-	//...
+let listUtilisateur = [];
+let Utilisateur = {
+		nom: "maxou",
+		motDePasse: "password",
+		mail: "haha@hotmail.fr"
 }
+ajoutUtilisateur(Utilisateur, listUtilisateur);
+Utilisateur = {
+		nom: "sisilas",
+		motDePasse: "password2",
+		mail: "gngngn@gmail.com"
+}
+ajoutUtilisateur(Utilisateur, listUtilisateur);
 
 
-const tryConnexion = (utilisateurs) => {
+
+const tryConnexion = (listUtilisateur) => {
 	return new Promise((resolve, reject) => {
-		document.querySelector('button').addEventListener('click', () => {
-			utilisateurs.forEach(utilisateur => {
-				pseudo = document.querySelector('input[name="pseudo"]').value;
-				password = document.querySelector('input[name="password"]').value;
+		document.querySelector('button[name="buttonC"]').addEventListener('click', () => {
+			listUtilisateur.forEach(utilisateur => {
+				let pseudo = document.querySelector('input[name="pseudoC"]').value;
+				let password = document.querySelector('input[name="passwordC"]').value;
 				if ((utilisateur.nom == pseudo) && (utilisateur.motDePasse == password)) {
 					resolve("Connexion réussie");
 				} else {
@@ -78,38 +69,74 @@ const tryConnexion = (utilisateurs) => {
 	});
 }
 
-let Utilisateur = {
-		nom: "maxou",
-		motDePasse: "password",
-}
-let listUtilisateur = [];
-listUtilisateur.push(Utilisateur);
 
 
 const tryConnexionAsync = async (listUtilisateur) => {
 	try {
 		let resultatRequete = await tryConnexion(listUtilisateur);
-		console.log(resultatRequete)
+		document.location.href="http://localhost:8080/catan-html/menu.html";
 	}
 	catch (e) {
+		document.location.href="http://localhost:8080/catan-html/accueil.html";
+		alert("Erreur lors de l'authentification")
 		console.error(e)
 	}
 	//...
 }
 
 
+let myLink = document.querySelector('button[name="buttonC"]')
+				.addEventListener('click', tryConnexionAsync(listUtilisateur));
 
 
-function seConnecter(event) {
-	event.preventDefault();
-	// On ajoute les informations
-	colNom.innerHTML = document.querySelector('input[name="libelle"]').value;
-	colPrix.innerHTML = document.querySelector('input[name="prix"]').value;
-	
+
+const tryInscription = (listUtilisateur) => {
+	return new Promise((resolve, reject) => {
+		document.querySelector('button[name="buttonI"]').addEventListener('click', () => {
+			let utilisateurExiste = false;
+			let pseudo = document.querySelector('input[name="pseudoI"]').value;
+			let password = document.querySelector('input[name="passwordI"]').value;
+			let mail = document.querySelector('input[name="mail"]').value;
+			listUtilisateur.forEach(utilisateur => {
+				if (utilisateur.nom === pseudo) {
+					utilisateurExiste = true;
+					reject("pseudo déjà utilisé");
+				} else {
+					console.log(utilisateur.nom);
+					console.log(pseudo);
+				}
+				if (password.length <= 6) {
+					reject("Mot de passe de moins de 6 caractères");
+				}
+			});
+			if (utilisateurExiste == false) {
+				let Utilisateur = {
+					pseudo: pseudo,
+					password: password,
+					mail: mail	
+				}
+				ajoutUtilisateur(Utilisateur, listUtilisateur);
+				resolve("Création du nouvel utilisateur");
+			}
+		});
+	});
 }
 
 
-let myLink = document.querySelector('form')
-				.addEventListener('button', tryConnexionAsync(listUtilisateur));
 
+const tryInscriptionAsync = async (listUtilisateur) => {
+	try {
+		let resultatRequete = await tryInscription(listUtilisateur);
+		console.log(resultatRequete);
+		document.location.href="http://localhost:8080/catan-html/menu.html";
+	}
+	catch (e) {
+		document.location.href="http://localhost:8080/catan-html/accueil.html";
+		alert("Erreur lors de l'inscription")
+		console.error(e)
+	}
+}
+
+let myLink2 = document.querySelector('button[name="buttonI"]')
+				.addEventListener('click', tryInscriptionAsync(listUtilisateur));
 
