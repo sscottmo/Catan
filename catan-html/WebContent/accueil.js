@@ -33,6 +33,34 @@ document.querySelectorAll('form a')
 		});
 
 
+const getPromesse = (arg) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			if (arg) {
+				resolve("Ok !");
+			} else {
+				reject("ERREUR ! ERREUR ! ERREUR !");
+			}
+		}, 3000);
+	});
+}
+
+
+//getPromesse(false).then(msg => console.log(msg))
+//				.catch(err => console.error(err));
+
+const getPromesseAsync = async () => {
+/* OU async function getPromesseAsync() { */
+	try {
+		let resultatRequete = await getPromesse(false);
+		console.log(resultatRequete)
+	}
+	catch (e) {
+		console.error(e)
+	}
+	//...
+}
+
 
 const tryConnexion = (utilisateurs) => {
 	return new Promise((resolve, reject) => {
@@ -50,10 +78,24 @@ const tryConnexion = (utilisateurs) => {
 	});
 }
 
-listUtilisateur
+let Utilisateur = {
+		nom: "maxou",
+		motDePasse: "password",
+}
+let listUtilisateur = [];
+listUtilisateur.push(Utilisateur);
 
 
-tryConnexion(listUtilisateur);
+const tryConnexionAsync = async (listUtilisateur) => {
+	try {
+		let resultatRequete = await tryConnexion(listUtilisateur);
+		console.log(resultatRequete)
+	}
+	catch (e) {
+		console.error(e)
+	}
+	//...
+}
 
 
 
@@ -68,6 +110,6 @@ function seConnecter(event) {
 
 
 let myLink = document.querySelector('form')
-				.addEventListener('button', ajouterProduit);
+				.addEventListener('button', tryConnexionAsync(listUtilisateur));
 
 
