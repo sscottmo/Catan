@@ -33,25 +33,29 @@ document.querySelectorAll('form a')
 		});
 
 
-const ajoutUtilisateur = (Utilisateur, listUtilisateur) => {
+export const ajoutUtilisateur = (Utilisateur, listUtilisateur) => {
 	listUtilisateur.push(Utilisateur);
 }
 
-let listUtilisateur = [];
+export let listUtilisateur = [];
 let Utilisateur = {
 		nom: "maxou",
 		motDePasse: "password",
-		mail: "haha@hotmail.fr"
+		mail: "haha@hotmail.fr",
+		statut: "connecté"
 }
 ajoutUtilisateur(Utilisateur, listUtilisateur);
 Utilisateur = {
 		nom: "sisilas",
 		motDePasse: "password2",
-		mail: "gngngn@gmail.com"
+		mail: "gngngn@gmail.com",
+		statut: "connecté"
 }
 ajoutUtilisateur(Utilisateur, listUtilisateur);
 
+//export { Utilisateur, listUtilisateur, ajoutUtilisateur };
 
+console.log(listUtilisateur);
 
 const tryConnexion = (listUtilisateur) => {
 	return new Promise((resolve, reject) => {
@@ -85,8 +89,8 @@ const tryConnexionAsync = async (listUtilisateur) => {
 }
 
 
-let myLink = document.querySelector('button[name="buttonC"]')
-				.addEventListener('click', tryConnexionAsync(listUtilisateur));
+document.querySelector('button[name="buttonC"]')
+			.addEventListener('click', tryConnexionAsync(listUtilisateur));
 
 
 
@@ -101,9 +105,6 @@ const tryInscription = (listUtilisateur) => {
 				if (utilisateur.nom === pseudo) {
 					utilisateurExiste = true;
 					reject("pseudo déjà utilisé");
-				} else {
-					console.log(utilisateur.nom);
-					console.log(pseudo);
 				}
 				if (password.length <= 6) {
 					reject("Mot de passe de moins de 6 caractères");
@@ -129,14 +130,15 @@ const tryInscriptionAsync = async (listUtilisateur) => {
 		let resultatRequete = await tryInscription(listUtilisateur);
 		console.log(resultatRequete);
 		document.location.href="http://localhost:8080/catan-html/menu.html";
+		alert(listUtilisateur)
 	}
 	catch (e) {
-		document.location.href="http://localhost:8080/catan-html/accueil.html";
 		alert("Erreur lors de l'inscription")
 		console.error(e)
 	}
 }
 
-let myLink2 = document.querySelector('button[name="buttonI"]')
+document.querySelector('button[name="buttonI"]')
 				.addEventListener('click', tryInscriptionAsync(listUtilisateur));
+
 
