@@ -14,7 +14,7 @@ const afficherMenu = (event) => {
 		});
 }
 
-
+  
 
 document.querySelector('.dropdown')
 .addEventListener('click', (event) =>{
