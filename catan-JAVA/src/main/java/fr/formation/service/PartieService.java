@@ -179,7 +179,7 @@ public class PartieService {
 		positionsPorts.add(posPort6.get(0));
 
 		for (Integer i : positionsPorts) {
-			Croisement crois = mesCroisements.get(i-1);
+			Croisement crois = mesCroisements.get(i - 1);
 			crois.setAccesPort(true);
 		}
 	}
@@ -195,13 +195,20 @@ public class PartieService {
 	@Transactional
 	public void affecterPioche(Partie partie) {
 		List<Carte> pioche = this.melangePioche();
-		pioche.forEach(c-> c.setPartie(partie));		
+		pioche.forEach(c -> c.setPartie(partie));
 		partie.setPioche(pioche);
 	}
 
 	@Transactional
 	public Partie creationPartie() {
-		Partie maPartie = new Partie();
+
+		List<Partie> mesParties = daoPartie.findAll();
+		Partie maPartie;
+		if (mesParties.size() == 0) {
+			maPartie = new Partie();
+		} else {
+			maPartie = mesParties.get(0);
+		}
 		this.affecterJoueurs(maPartie);
 		this.affecterTerrain(maPartie);
 		this.affecterPioche(maPartie);

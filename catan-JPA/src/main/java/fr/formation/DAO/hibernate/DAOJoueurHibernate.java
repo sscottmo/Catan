@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import fr.formation.Classe.Couleur;
 import fr.formation.Classe.Joueur;
-import fr.formation.Classe.Utilisateur;
 import fr.formation.DAO.IDAOJoueur;
 
 @Repository
@@ -68,20 +67,20 @@ public class DAOJoueurHibernate extends DAOHibernate implements IDAOJoueur {
 		leJoueurASupprimer.setId(id);
 		delete(leJoueurASupprimer);
 	}
-
-	public void choisirJoueurs() {
-		List<Utilisateur> utilisateurs = new ArrayList <Utilisateur>();
-		utilisateurs = em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
-		
-		while (utilisateurs.size()>4) {
-			utilisateurs.remove(3);
-		}
-		
-		for (Utilisateur u : utilisateurs) {
-			this.trans(u);
-		}
-		return;
-	}
+//
+//	public void choisirJoueurs() {
+//		List<Utilisateur> utilisateurs = new ArrayList <Utilisateur>();
+//		utilisateurs = em.createQuery("select u from Utilisateur u where u.recherchePartie = true", Utilisateur.class).getResultList();
+//		
+//		while (utilisateurs.size()>4) {
+//			utilisateurs.remove(3);
+//		}
+//		
+//		for (Utilisateur u : utilisateurs) {
+//			this.trans(u);
+//		}
+//		return;
+//	}
 
 	
 	public List<Joueur> affecterJoueurs(){
@@ -105,29 +104,35 @@ public class DAOJoueurHibernate extends DAOHibernate implements IDAOJoueur {
 		);
 		return joueurs;
 		}
+//
+//	@Override
+//	public Joueur trans(Utilisateur utilisateur) {
+//		Joueur joueur = null;
+//		
+//		try {
+//			em.getTransaction().begin();
+//			
+//			em.createQuery("update Utilisateur u set u.type = 1 where u.id = :id")
+//				.setParameter("id", utilisateur.getId())
+//				.executeUpdate();
+//			
+//			em.getTransaction().commit();
+//			
+////			joueur = em.createQuery("select j from Joueur j where j.id = :id", Joueur.class)
+////						.setParameter("id", utilisateur.getId())
+////						.getSingleResult();
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			em.getTransaction().rollback();
+//		}
+//		
+//		return joueur;
+//	}
 
 	@Override
-	public Joueur trans(Utilisateur utilisateur) {
-		Joueur joueur = null;
+	public void choisirJoueurs() {
+		// TODO Auto-generated method stub
 		
-		try {
-			em.getTransaction().begin();
-			
-			em.createQuery("update Utilisateur u set u.type = 1 where u.id = :id")
-				.setParameter("id", utilisateur.getId())
-				.executeUpdate();
-			
-			em.getTransaction().commit();
-			
-//			joueur = em.createQuery("select j from Joueur j where j.id = :id", Joueur.class)
-//						.setParameter("id", utilisateur.getId())
-//						.getSingleResult();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			em.getTransaction().rollback();
-		}
-		
-		return joueur;
 	}
 }
