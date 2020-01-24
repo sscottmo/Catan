@@ -3,30 +3,49 @@ package fr.formation.Classe;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-@DiscriminatorValue("1")
-public class Joueur extends Utilisateur {
-	
-	
-	public int getRouteMax() {
-		return routeMax;
-	}
-	public void setRouteMax(int routeMax) {
-		this.routeMax = routeMax;
-	}
+@Table(name = "joueur")
+public class Joueur {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "JOU_ID")
+	private int id;
+
+	@Column(name = "JOU_PSEUDO", length = 100, nullable = false)
+	@NotEmpty
+	@Size(max = 100)
+	private String nom;
+
+	@Column(name = "JOU_MOT_DE_PASSE", length = 100, nullable = false)
+	@NotEmpty
+	@Size(max = 100)
+	private String motDePasse;
+
+	@Column(name = "JOU_EST_CONNECTE")
+	private Boolean estConnecte;
+
+	@Column(name = "JOU_RECHERCHE_PARTIE")
+	private Boolean recherchePartie = false;
+
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="JOU_PARTIE")
@@ -80,6 +99,12 @@ public class Joueur extends Utilisateur {
 	
 	
 
+	public int getRouteMax() {
+		return routeMax;
+	}
+	public void setRouteMax(int routeMax) {
+		this.routeMax = routeMax;
+	}
 	public void setBois(Integer bois) {
 		this.bois = bois;
 	}
@@ -174,6 +199,36 @@ public class Joueur extends Utilisateur {
 	public void setPartie(Partie partie) {
 		this.partie = partie;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+	public Boolean getEstConnecte() {
+		return estConnecte;
+	}
+	public void setEstConnecte(Boolean estConnecte) {
+		this.estConnecte = estConnecte;
+	}
+	public Boolean getRecherchePartie() {
+		return recherchePartie;
+	}
+	public void setRecherchePartie(Boolean recherchePartie) {
+		this.recherchePartie = recherchePartie;
+	}
 	
 }
