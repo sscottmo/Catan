@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<base href="/catan-html/" />
 		<meta charset="ISO-8859-1">
@@ -60,14 +60,16 @@
 	<body>
 		<header>
 		</header>
-		<section id="connexion">
+		<!-- <section id="connexion"> -->
+		<div th:switch="{joueur.id}">
+		<div th:case="0">
 			<form method="POST" class="text-center">
 				<h1 class="text-center">Connexion</h1>
 				<div class="form-group">
-				    <input type="text" class="form-control" id="pseudoC" name=pseudoC placeholder="Pseudo" required>
+				    <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" required>
 				</div>
 				<div class="form-group">
-				    <input type="password" class="form-control" id="passwordC" name=passwordC placeholder="Mot de passe" required>
+				    <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe" required>
 				</div>
 			</form>
 			<div class="text-center">
@@ -79,8 +81,10 @@
 			<form class="text-center">
 				<a href="#inscription">Pas encore inscrit ? Inscrivez-vous.</a>
 			</form>
-		</section>
-		<section id="inscription">
+		</div>
+		<!-- </section>
+		<section id="inscription"> -->
+		<div th:case="*">
 			<div class="container">
 				<div class="row">
 					<div class="col-1 bleu"><marquee direction="up"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
@@ -91,15 +95,15 @@
 							<h1 class="text-center">Inscription</h1>
 							<div class="form-group">
 							    <label for="pseudo">Nom d'utilisateur :</label>
-							    <input type="text" class="form-control" id="pseudoI" name=pseudoI placeholder="Pseudo" required>
+							    <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" required>
 							</div>
 							<div class="form-group">
 							    <label for="password">Mot de passe :</label>
-							    <input type="password" class="form-control" id="passwordI" name=passwordI placeholder="Mot de passe" required>
+							    <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe" required>
 							</div>
 							<div>
 								<label for="email">Adresse e-mail :</label>
-								<input type="e-mail" class="form-control" id="email" name="mail" placeholder="example@gmail.com" required/>
+								<input type="email" class="form-control" id="email" name="mail" placeholder="example@gmail.com" required/>
 							</div>
 						</form>
 						<div class="text-center">
@@ -117,6 +121,8 @@
 					<div class="col-1 rouge"><marquee direction="down"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
 				</div>
 			</div>
-		</section>
+		</div>
+		</div>
+		<!-- </section> -->
 	</body>
 </html>
