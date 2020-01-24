@@ -201,6 +201,8 @@ public class PartieService {
 
 	@Transactional
 	public Partie creationPartie() {
+		
+		//ON NE FAIT QU'UNE SEULE PARTIE ACTUELLEMENT, D'OU LE IF
 
 		List<Partie> mesParties = daoPartie.findAll();
 		Partie maPartie;
@@ -213,7 +215,7 @@ public class PartieService {
 		this.affecterTerrain(maPartie);
 		this.affecterPioche(maPartie);
 		daoPartie.save(maPartie);
-		maPartie.setPosBandit(daoPartie.findPositionDesert());
+		maPartie.setPosBandit(daoPartie.findPositionDesert()); //findPositionDesert à changer si plusieurs parties.
 		daoPartie.save(maPartie);
 
 		return maPartie;
