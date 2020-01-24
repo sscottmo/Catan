@@ -11,8 +11,7 @@ import fr.formation.Classe.Partie;
 import fr.formation.Classe.Position;
 
 public interface IDAOPartie extends JpaRepository<Partie,Integer>{
-	
-	@Query("select p from Partie p inner join p.terrain t where t.type = Desert and t.partie = :laPartie")
-	public Position findPositionDesert(@Param("laPartie") Partie partie);
 
+	@Query("select p from Position p where p.type = 'Desert'")
+	public Position findPositionDesert();
 }

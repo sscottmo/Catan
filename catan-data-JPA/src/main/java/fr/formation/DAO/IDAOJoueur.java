@@ -17,7 +17,7 @@ public interface IDAOJoueur extends JpaRepository<Joueur,Integer> {
 	
 	public List<Joueur> findByRecherchePartieTrue();
 	
-	@Query("select u from Utilisateur u where u.recherchePartie = true")
+	@Query("select j from Joueur j where j.recherchePartie = true")
 	public List<Joueur> findJoueurPrets();
 	
 	

@@ -22,7 +22,6 @@ import fr.formation.Classe.Position;
 import fr.formation.Classe.Type;
 import fr.formation.Classe.TypePort;
 import fr.formation.Classe.TypeTerre;
-import fr.formation.Classe.Utilisateur;
 import fr.formation.DAO.IDAOCarte;
 import fr.formation.DAO.IDAOCroisement;
 import fr.formation.DAO.IDAOJoueur;
@@ -207,7 +206,7 @@ public class PartieService {
 		this.affecterTerrain(maPartie);
 		this.affecterPioche(maPartie);
 		daoPartie.save(maPartie);
-		maPartie.setPosBandit(daoPartie.findPositionDesert(maPartie));
+		maPartie.setPosBandit(daoPartie.findPositionDesert());
 		daoPartie.save(maPartie);
 
 		return maPartie;
