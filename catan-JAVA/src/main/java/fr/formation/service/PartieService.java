@@ -43,23 +43,23 @@ public class PartieService {
 	@Autowired
 	IDAOCarte daoCarte;
 
-	@Transactional
-	public void choisirJoueurs() {
-		List<Utilisateur> futursJoueurs = daoJoueur.findUtilisateursPrets();
-
-		while (futursJoueurs.size() > 4) {
-			futursJoueurs.remove(3);
-		}
-
-		for (Utilisateur u : futursJoueurs) {
-			daoJoueur.transUtilisateurEnJoueur(u.getId());
-		}
-		return;
-	}
+//	@Transactional
+//	public void choisirJoueurs() {
+//		List<Utilisateur> futursJoueurs = daoJoueur.findUtilisateursPrets();
+//
+//		while (futursJoueurs.size() > 4) {
+//			futursJoueurs.remove(3);
+//		}
+//
+//		for (Utilisateur u : futursJoueurs) {
+//			daoJoueur.transUtilisateurEnJoueur(u.getId());
+//		}
+//		return;
+//	}
 
 	@Transactional
 	public void affecterJoueurs(Partie partie) {
-		List<Joueur> joueurs = daoJoueur.findJoueursPrets();
+		List<Joueur> joueurs = daoJoueur.findByRecherchePartieTrue();
 		List<Couleur> lesCouleurs = new ArrayList<Couleur>(Arrays.asList(Couleur.values()));
 
 		while (joueurs.size() > 4) {
@@ -88,30 +88,30 @@ public class PartieService {
 		Set<Croisement> croisements = new HashSet<Croisement>();
 		Set<Chemin> chemins = new HashSet<Chemin>();
 		positions.forEach(p -> {
-			p.setId(0);
+//			p.setId(0);         POUR FAIRE PLUSIEURS PARTIES ON NE PEUT PAS FAIRE DES COPIES EN AFFECTANT ID=0, IL FAUT CREER DES NOUVEAUX CROISEMENTS, CHEMINS, POSITIONS
 			p.setPartie(partie);
 			p.getCroisements1().forEach(c -> {
-				c.setId(0);
+//				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
 			});
 			p.getCroisements2().forEach(c -> {
-				c.setId(0);
+//				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
 			});
 			p.getCroisements3().forEach(c -> {
-				c.setId(0);
+//				c.setId(0);
 				c.setPartie(partie);
 				croisements.add(c);
 			});
 			p.getChemins1().forEach(c -> {
-				c.setId(0);
+//				c.setId(0);
 				c.setPartie(partie);
 				chemins.add(c);
 			});
 			p.getChemins2().forEach(c -> {
-				c.setId(0);
+//				c.setId(0);
 				c.setPartie(partie);
 				chemins.add(c);
 			});
@@ -189,7 +189,7 @@ public class PartieService {
 	public List<Carte> melangePioche() {
 		List<Carte> pioche = daoCarte.findByIdLessThan(26);
 		Collections.shuffle(pioche);
-		pioche.forEach(c -> c.setId(0));
+//		pioche.forEach(c -> c.setId(0));  IDEM, id=0 IMPOSSIBLE POUR FAIRE LA COPIE DES CARTES
 		return pioche;
 	}
 
