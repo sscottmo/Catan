@@ -215,7 +215,7 @@ public class PartieService {
 		this.affecterTerrain(maPartie);
 		this.affecterPioche(maPartie);
 		daoPartie.save(maPartie);
-		maPartie.setPosBandit(daoPartie.findPositionDesert()); //findPositionDesert à changer si plusieurs parties.
+		maPartie.setPosBandit(daoPartie.findPositionDesert()); //findPositionDesert ï¿½ changer si plusieurs parties.
 		daoPartie.save(maPartie);
 
 		return maPartie;
