@@ -1,0 +1,269 @@
+
+
+
+
+ create database catan collate utf8_general_ci;
+ 
+ use catan
+ 
+ CREATE TABLE position (
+    POS_ID INT NOT NULL AUTO_INCREMENT,
+    POS_POS INT NOT NULL,
+	POS_VALEUR INT NOT NULL,
+    POS_TYPE VARCHAR(100) NOT NULL,
+    PRIMARY KEY (POS_ID)
+) ENGINE = InnoDb;
+
+
+CREATE TABLE carte (
+    CARTE_ID INT NOT NULL AUTO_INCREMENT,
+    CARTE_CARTEDEV VARCHAR(100) NOT NULL,
+    PRIMARY KEY (CARTE_ID)
+) ENGINE = InnoDb;
+
+
+
+CREATE TABLE croisement (
+    CROIS_ID INT NOT NULL AUTO_INCREMENT,
+    CROIS_POS_1 INT NOT NULL,
+	CROIS_POS_2 INT NOT NULL,
+	CROIS_POS_3 INT NOT NULL,
+	CROIS_JOUEUR INT NULL,
+	CROIS_VILLE BOOL DEFAULT 0 NOT NULL,
+    PRIMARY KEY (CROIS_ID)
+) ENGINE = InnoDb;
+
+CREATE TABLE chemin (
+    CHEM_ID INT NOT NULL AUTO_INCREMENT,
+    CHEM_POS_1 INT NOT NULL,
+	CHEM_POS_2 INT NOT NULL,
+	CHEM_JOUEUR INT NULL,
+    PRIMARY KEY (CHEM_ID)
+) ENGINE = InnoDb;
+
+ALTER TABLE croisement
+	ADD CONSTRAINT FK_positioncroisement_1
+	FOREIGN KEY (CROIS_POS_1)
+	REFERENCES `position` (POS_ID);
+
+ALTER TABLE croisement
+    ADD
+        CONSTRAINT FK_positioncroisement_2
+        FOREIGN KEY (CROIS_POS_2)
+        REFERENCES `position` (POS_ID);
+
+ALTER TABLE croisement
+    ADD
+        CONSTRAINT FK_positioncroisement_3
+        FOREIGN KEY (CROIS_POS_3)
+        REFERENCES `position` (POS_ID);
+
+ALTER TABLE chemin
+    ADD
+        CONSTRAINT FK_positionchemin_1
+        FOREIGN KEY (CHEM_POS_1)
+        REFERENCES `position` (POS_ID);
+
+ALTER TABLE chemin
+    ADD
+        CONSTRAINT FK_positionchemin_2
+        FOREIGN KEY (CHEM_POS_2)
+        REFERENCES `position` (POS_ID);
+		
+
+	
+insert into position (POS_POS,POS_VALEUR,POS_TYPE, POS_X, POS_Y) VALUES(1,0,'Desert',4,7),
+(2,12,'Vide',3,8),
+(3,8,'Vide',4,9),
+(4,10,'Vide',5,8),
+(5,5,'Vide',5,6),
+(6,8,'Vide',4,5),
+(7,5,'Vide',3,6),
+(8,6,'Vide',2,7),
+(9,9,'Vide',2,9),
+(10,4,'Vide',3,10),
+(11,10,'Vide',4,11),
+(12,11,'Vide',5,10),
+(13,11,'Vide',6,9),
+(14,6,'Vide',6,7),
+(15,3,'Vide',6,5),
+(16,3,'Vide',5,4),
+(17,9,'Vide',4,3),
+(18,2,'Vide',3,4),
+(19,4,'Vide',2,5),
+(20,0,'Vide',1,4),
+(21,0,'Vide',1,8),
+(22,0,'Vide',2,11),
+(23,0,'Vide',4,13),
+(24,0,'Vide',6,11),
+(25,0,'Vide',7,8),
+(26,0,'Vide',7,4),
+(27,0,'Vide',5,2),
+(28,0,'Vide',3,2),
+(29,0,'Ocean',2,3),
+(30,0,'Ocean',1,6),
+(31,0,'Ocean',1,10),
+(32,0,'Ocean',3,12),
+(33,0,'Ocean',5,12),
+(34,0,'Ocean',7,10),
+(35,0,'Ocean',7,6),
+(36,0,'Ocean',6,3),
+(37,0,'Ocean',4,1);
+
+		
+insert into croisement (CROIS_POS_1,CROIS_POS_2,CROIS_POS_3) VALUES(1,2,3),
+(1,3,4),
+(1,4,5),
+(1,5,6),
+(1,6,7),
+(1,7,2),
+(2,7,8),
+(2,8,9),
+(2,9,10),
+(2,10,3),
+(3,10,11),
+(3,11,12),
+(3,12,4),
+(4,12,13),
+(4,13,14),
+(4,14,5),
+(5,14,15),
+(5,15,16),
+(5,16,6),
+(6,16,17),
+(6,17,18),
+(6,18,7),
+(7,18,19),
+(7,19,8),
+(8,19,30),
+(8,30,21),
+(8,21,9),
+(9,21,31),
+(9,31,22),
+(9,22,10),
+(10,22,32),
+(10,32,11),
+(11,32,23),
+(11,23,33),
+(11,33,12),
+(12,33,24),
+(12,24,13),
+(13,24,34),
+(13,34,25),
+(13,25,14),
+(14,25,35),
+(14,35,15),
+(15,35,26),
+(15,26,36),
+(15,36,16),
+(16,36,27),
+(16,27,17),
+(17,27,37),
+(17,37,28),
+(17,28,18),
+(18,28,29),
+(18,29,19),
+(19,29,20),
+(19,20,30);
+
+
+insert into chemin (CHEM_POS_1,CHEM_POS_2) VALUES(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6),
+(1,7),
+(2,7),
+(2,8),
+(2,9),
+(2,10),
+(2,3),
+(3,10),
+(3,11),
+(3,12),
+(3,4),
+(4,12),
+(4,13),
+(4,14),
+(4,5),
+(5,14),
+(5,15),
+(5,16),
+(5,6),
+(6,16),
+(6,17),
+(6,18),
+(6,7),
+(7,18),
+(7,19),
+(7,8),
+(8,19),
+(8,30),
+(8,21),
+(8,9),
+(9,21),
+(9,31),
+(9,22),
+(9,10),
+(10,22),
+(10,32),
+(10,11),
+(11,32),
+(11,23),
+(11,33),
+(11,12),
+(12,33),
+(12,24),
+(12,13),
+(13,24),
+(13,34),
+(13,25),
+(13,14),
+(14,25),
+(14,35),
+(14,15),
+(15,35),
+(15,26),
+(15,36),
+(15,16),
+(16,36),
+(16,27),
+(16,17),
+(17,27),
+(17,37),
+(17,28),
+(17,18),
+(18,28),
+(18,29),
+(18,19),
+(19,29),
+(19,20),
+(19,30);
+
+	
+insert into carte (CARTE_CARTEDEV) VALUES('PointDeVictoire'),
+('PointDeVictoire'),
+('PointDeVictoire'),
+('PointDeVictoire'),
+('PointDeVictoire'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('Chevalier'),
+('ProgresRoute'),
+('ProgresRoute'),
+('ProgresDecouverte'),
+('ProgresDecouverte'),
+('ProgresMonopole'),
+('ProgresMonopole');
+		

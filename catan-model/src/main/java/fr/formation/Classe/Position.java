@@ -32,7 +32,7 @@ public class Position {
 	private int pos;
 	
 	@Column(name = "POS_VALEUR")
-	@Size(max = 2)
+	//@Size(max = 2)
 	private int val;
 	
 	@Column(name = "POS_TYPE")
@@ -64,8 +64,32 @@ public class Position {
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="POS_PARTIE")
 	private Partie partie;
+	
+	@Column(name = "POS_X")
+	private int x = 0;
+	
+	@Column(name = "POS_Y")
+	private int y = 0;
 
 	
+	public int getPos() {
+		return pos;
+	}
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 	public int getId() {
 		return id;
 	}
