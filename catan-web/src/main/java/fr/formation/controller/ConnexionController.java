@@ -1,7 +1,7 @@
 package fr.formation.controller;
 
-import javax.validation.Valid;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,37 +15,31 @@ import fr.formation.Classe.Joueur;
 import fr.formation.DAO.IDAOJoueur;
 
 @Controller
-public class InscriptionController {
-	
+public class ConnexionController {
+
 	@Autowired
 	private IDAOJoueur daoJoueur;
 
-	@GetMapping(value="/inscription")
+	@GetMapping(value="/connexion")
 	public String formulaire(Model model) {
 		model.addAttribute("joueur", new Joueur());
-		return "inscription";
+		return "connexion";
 	}
 	
-	@PostMapping(value="/inscription")
-	public String inscription(@Valid @ModelAttribute Joueur joueur, BindingResult result, HttpSession session, Model model) {
-		
-		boolean pseudoExiste = false;
-		if (joueur.getMotDePasse().length() < 4) {
-			return "inscription";
-		}
+	@PostMapping(value="/connexion")
+	public String connexion(@Valid @ModelAttribute Joueur joueur, BindingResult result, HttpSession session, Model model) {
 		
 		for (Joueur j : daoJoueur.findAll()) {
 			if (j.getPseudo().equals(joueur.getPseudo())) {
-				pseudoExiste = true;
+				if (j.getMotDePasse().contentEquals(joueur.getMotDePasse())) {
+					j.setEstConnecte(true);
+					session.setAttribute("joueur", j);
+					return "redirect:/menu";
+				}
+				return "connexion";
 			}
 		}
-		if (!pseudoExiste) {
-			joueur.setEstConnecte(true);
-			daoJoueur.save(joueur); 
-			session.setAttribute("joueurCo", joueur);
-			return "redirect:/menu";
-		}
 		
-		return "inscription";
+		return "connexion";
 	}
 }

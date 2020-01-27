@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<base href="/catan-web/" />
+		<meta charset="ISO-8859-1">
+		<meta name="description" content="Colon de Catan"/>
+		<meta name="viewport" content="width=devide-width, initial-scale=1" />
+		<title>Bienvenue sur COLON DE CATAN </title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<style>
+			label {
+				display: inline-block;
+				width:200px;
+			}
+			form input[type="text"], 
+			form input[type="password"],
+			form input[type="e-mail"] {
+				display: inline-block;
+				width:250px;
+			}
+			header {
+				background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRG7Wt_H6Agg6GvnnV8FBn3kFlJZvE9QI3Oa1-B5uFsKQ1ub3SI");
+				background-size: 800px;
+				height: 300px;
+				background-repeat: no-repeat;
+				background-origin: content-box;
+				background-position: top;
+			}
+			h1 {
+				margin-bottom: 30px;
+			}
+			button {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.rotate {
+			    margin: 0;
+			    padding: 0;
+			    -webkit-transform-origin: 0 0;
+		        -moz-transform-origin: 0 0;
+		        -ms-transform-origin: 0 0;
+		        -o-transform-origin: 0 0;
+			        transform-origin: 0 0;
+			    -webkit-transform: rotate(90deg);
+			    -moz-transform: rotate(90deg);
+			    -ms-transform: rotate(90deg);
+			    -o-transform: rotate(90deg);
+			       transform: rotate(90deg);
+			}
+			.rouge{
+				color: red;
+			}
+			
+			.bleu{
+				color: blue;
+			}
+		</style>
+		<script defer type="module" src="accueil.js"></script>
+	</head>
+	<body>
+		<header>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-1 bleu"><marquee direction="up"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+				<div class="col-1 bleu"><marquee direction="down"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+				<div class="col-1 bleu"><marquee direction="up"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+				<div class="col-6">
+					<form method="POST" class="text-center">
+						<h1 class="text-center">Inscription</h1>
+						<div class="form-group">
+						    <label for="pseudo">Nom d'utilisateur :</label>
+						    <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" th:value="${joueur.pseudo}" required>
+						</div>
+				    	<span th:errors="${joueur.pseudo}" class="alert alert-danger" role="alert">Message d'erreur par défaut pseudo</span>
+						<div class="form-group">
+						    <label for="password">Mot de passe :</label>
+						    <input type="password" class="form-control" id="motDePasse" name="motDePasse" placeholder="Mot de passe" th:value="${joueur.motDePasse}" required>
+						</div>
+				    		<span th:errors="${joueur.motDePasse}" class="alert alert-danger" role="alert">Message d'erreur par défaut mot de passe</span>
+						<div>
+							<label for="email">Adresse e-mail :</label>
+							<input type="email" class="form-control" id="mail" name="mail" placeholder="example@gmail.com" th:value="${joueur.mail}"/>
+						</div>
+						<div class="text-center">
+							<!-- <a href="menu.html"> 
+								<button type="button" name="button" class="btn btn-success">Inscription</button>
+							</a> -->
+							<button type="submit" class="btn btn-success">Inscription</button>
+						</div>
+					</form>
+					<form class="text-center">
+						<a href="connexion.html">Déjà inscrit ? Connectez-vous.</a>
+					</form>
+				</div>
+				<div class="col-1 rouge"><marquee direction="down"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+				<div class="col-1 rouge"><marquee direction="up"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+				<div class="col-1 rouge"><marquee direction="down"><h3>R<br />E<br />J<br />O<br />I<br />N<br />S<br /> <br />N<br />O<br />U<br />S</h3></marquee></div>
+			</div>
+		</div>
+	</body>
+</html>
