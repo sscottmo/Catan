@@ -1,0 +1,276 @@
+@charset "ISO-8859-1";
+
+
+/* Haut de la page et arrière plan */
+h1 {
+	padding: 8px 37.5px;
+	font-size: 48px;
+	background-color: #ba7f92;
+	text-align: center;
+	margin-top: 0px;
+}
+
+body {
+	background-color: #b0c7f5;
+}
+
+
+/* Création des hexagones */
+
+/* .hexagon.ocean {
+	width: 150px;
+	height: 157.5px;
+	background: blue;
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+} */
+
+/* .hexagon.terre {
+	width: 150px;
+	height: 157.5px;
+	background: green;
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+} */
+.hexagon.ocean {
+	width: 150px;
+	height: 82.5px;
+	background: blue;
+	position: relative;
+}
+
+.hexagon.ocean:before {
+	content: "";
+	position: absolute;
+	top: -43.3px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-bottom: 43.3px solid blue;
+}
+
+.hexagon.ocean:after {
+	content: "";
+	position: absolute;
+	bottom: -43.3px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-top: 43.3px solid blue;
+}
+
+.hexagon.terre {
+	width: 150px;
+	height: 82.5px;
+	background: green;
+	position: relative;
+}
+
+.hexagon.terre:before {
+	content: "";
+	position: absolute;
+	top: -43.3px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-bottom: 43.3px solid green;
+}
+
+.hexagon.terre:after {
+	content: "";
+	position: absolute;
+	bottom: -43.3px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 75px solid transparent;
+	border-right: 75px solid transparent;
+	border-top: 43.3px solid green;
+}
+
+/* disposition du plateau */
+
+div {
+	display: inline-block;
+}
+#plateau {
+	min-width: 1300px;
+}
+
+.plateau {
+	position: relative;
+	margin-top: -19px;
+	display: block;
+	text-align: center;
+}
+
+.hexagon {
+	margin-left: -4.5px;
+	margin-top: 55px;
+	position: relative;
+}
+
+.vide {
+	width: 75px;
+}
+
+#ligne1 {
+	margin-top: 150px;
+}
+
+/* Affichage des menus et tableaux */
+
+th, td {
+	padding: 15px;
+	width: 150px;
+	text-align: center;
+}
+
+#menu {
+	position: fixed;
+	z-index: 50;
+	top: 0;
+	left: 0;
+}
+
+#joueurs {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 50;
+	width: 300px;
+}
+
+#mesCartes {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 50;
+	width: 15%;
+}
+
+#mesRessources {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 50;
+	width: 10%;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+}
+
+/* Création des croisements */
+
+.croisement {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 10px;
+	border-color: white;
+	z-index: 10;
+	position: absolute;
+	display: inline;
+}
+
+.croisement.haut {
+	top: -51px;
+	left: 65px;
+}
+
+.croisement.hautgauche {
+	top: -10px;
+	left: -10px;
+}
+
+.croisement.hautdroite {
+	top: -10px;
+	left: 140px;
+}
+
+.croisement.bas {
+	top: 113px;
+	left: 65px;
+}
+
+.croisement.basgauche {
+	top: 72.5px;
+	left: -10px;
+}
+
+.croisement.basdroite {
+	top: 72.5px;
+	left: 140px;
+}
+
+/* Création des chemins */
+
+.chemin {
+	content: "";
+	width: 0px;
+	height: 82.5px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	color: white;
+	z-index: 1;
+	position: absolute;
+	display: inline;
+}
+
+.chemin.gauche {
+	left: -1px;
+}
+
+.chemin.gauchehaut {
+	transform: rotate(-120deg);
+	left: 36px;
+	top: -64px
+}
+
+.chemin.gauchebas {
+	transform: rotate(120deg);
+	left: 35px;
+	top: 63px
+}
+
+.chemin.droite {
+	left: 149px;
+}
+
+.chemin.droitehaut {
+	transform: rotate(120deg);
+	left: 111px;
+	top: -64px
+}
+
+.chemin.droitebas {
+	transform: rotate(-120deg);
+	left: 111px;
+	top: 63px
+}
+
+/* Grossissement des chemins et croisements au passage de la souris */
+
+.croisement:hover{
+	transform: scale(1.75);
+}
+.chemin.droite:hover, .chemin.gauche:hover {
+	transform: scalex(2.5);
+}
+
+.chemin.gauchehaut:hover, .chemin.gauchebas:hover,.chemin.droitehaut:hover, .chemin.droitebas:hover {
+	border-width: 5px;
+}
