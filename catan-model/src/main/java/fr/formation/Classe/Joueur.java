@@ -31,14 +31,18 @@ public class Joueur {
 	private int id;
 
 	@Column(name = "JOU_PSEUDO", length = 100, nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "Le pseudo est obligatoire")
 	@Size(max = 100)
-	private String nom;
+	private String pseudo;
 
-	@Column(name = "JOU_MOT_DE_PASSE", length = 100, nullable = false)
-	@NotEmpty
-	@Size(max = 100)
+	@Column(name = "JOU_MOT_DE_PASSE", length = 20, nullable = false)
+	@NotEmpty(message = "Le mot de passe est obligatoire (de 4 à 20 caractères)")
+	@Size(min = 4, max = 20, message = "Le mot de passe doit faire entre 4 et 20 caractères")
 	private String motDePasse;
+
+	@Column(name = "JOU_MAIL", length = 100)
+	@Size(max = 100)
+	private String mail;
 
 	@Column(name = "JOU_EST_CONNECTE")
 	private Boolean estConnecte;
@@ -206,11 +210,11 @@ public class Joueur {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNom() {
-		return nom;
+	public String getPseudo() {
+		return pseudo;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 	public String getMotDePasse() {
 		return motDePasse;
@@ -230,5 +234,11 @@ public class Joueur {
 	public void setRecherchePartie(Boolean recherchePartie) {
 		this.recherchePartie = recherchePartie;
 	}
-	
+
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 }

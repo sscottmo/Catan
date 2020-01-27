@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("fr.formation.dao")
+@EnableJpaRepositories("fr.formation.DAO")
 @PropertySource("classpath:data-source.properties")
 public class JpaConfig {
 
@@ -30,7 +30,7 @@ public class JpaConfig {
 	@Bean
 	public BasicDataSource datasource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(env.getProperty("src.driver"));
+		dataSource.setDriverClassName(env.getProperty("sql.driver"));
 		dataSource.setUrl(env.getProperty("sql.url"));
 		dataSource.setUsername(env.getProperty("sql.username"));
 		dataSource.setPassword(env.getProperty("sql.password"));

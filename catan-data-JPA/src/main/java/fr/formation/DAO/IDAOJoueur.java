@@ -4,16 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import fr.formation.Classe.Joueur;
 
 public interface IDAOJoueur extends JpaRepository<Joueur,Integer> {
 
 
-	public Optional<Joueur> findByNom(String nom);
+	public Optional<Joueur> findByPseudo(String pseudo);
 
-	public List<Optional<Joueur>> findByNomIs(String nom);
+	public List<Optional<Joueur>> findByPseudoIs(String pseudo);
 	
 	public List<Joueur> findByRecherchePartieTrue();
 	
