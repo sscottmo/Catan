@@ -173,4 +173,10 @@ public class Position {
 		}
 		return croisements;
 	}
+	public List<Chemin> getLesChemins(){
+		List<Chemin> chemins = new ArrayList<Chemin>();
+		chemins.addAll(chemins1);
+		chemins.addAll(chemins2);
+		return chemins;
+	}
 } 

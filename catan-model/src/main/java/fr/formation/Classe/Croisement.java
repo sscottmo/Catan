@@ -53,6 +53,8 @@ public class Croisement {
 	@JoinColumn(name="CROIS_PARTIE")
 	private Partie partie;
 	
+	private PostureCroisement posture;
+	
 	
 	public Position getPos1() {
 		return pos1;
@@ -122,12 +124,67 @@ public class Croisement {
 		this.accesPort = accesPort;
 	}
 	
-	public List<Position> getCroisement() {
+	public List<Position> getPositions() {
 		List<Position> croisement = new ArrayList<Position>();
 		croisement.add(pos1);
 		croisement.add(pos2);
 		croisement.add(pos3);
 		return croisement;
 	}
+	public List<Position> getPositionsOtherThan(Position p) {
+		List<Position> positions = new ArrayList<Position>();
+		if (pos1.getId() != p.getId()) {
+			positions.add(pos1);
+		}
+		else if (pos2.getId() != p.getId()) {
+			positions.add(pos2);
+		}
+		else if (pos3.getId() != p.getId()) {
+			positions.add(pos3);
+		}
+		return positions;
+	}
+	public PostureCroisement getPosture() {
+		return posture;
+	}
+	public void setPosture(PostureCroisement posture) {
+		this.posture = posture;
+	}
+	
+	public void trouverPosture(Position p) {
+		Position pos1 = this.getPositionsOtherThan(p).get(0);
+		Position pos2 = this.getPositionsOtherThan(p).get(1);
+		float x = ((float)(pos1.getX()+pos2.getX()))/2;
+		float y = ((float)(pos1.getY()+pos2.getY()))/2;
+		float xP = (float) p.getX();
+		float yP = (float) p.getY();
+
+			if (y < yP) {
+				if(x< xP) {
+					this.setPosture(PostureCroisement.hautgauche);
+				}
+				else {
+					this.setPosture(PostureCroisement.basgauche);
+				}
+			}
+			else if (y == yP) {
+				if(x< xP) {
+					this.setPosture(PostureCroisement.haut);
+				}
+				else {
+					this.setPosture(PostureCroisement.bas);
+				}
+			}
+			else {
+				if(x< xP) {
+					this.setPosture(PostureCroisement.hautdroite);
+				}
+				else {
+					this.setPosture(PostureCroisement.basdroite);
+				}
+			}
+		
+		
+		}
 
 }

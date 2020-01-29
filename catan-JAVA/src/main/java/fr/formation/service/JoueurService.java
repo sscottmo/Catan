@@ -18,10 +18,10 @@ public class JoueurService {
 	
 	@Transactional
 	public void inscription(String nom, String password) {
-		Optional<Joueur> joueur = daoJoueur.findByNom(nom);
+		Optional<Joueur> joueur = daoJoueur.findByPseudo(nom);
 		if (joueur == null) {
 			Joueur newJoueur = new Joueur();
-			newJoueur.setNom(nom);
+			newJoueur.setPseudo(nom);
 			newJoueur.setMotDePasse(password);
 			daoJoueur.save(newJoueur);
 		} else {
@@ -32,7 +32,7 @@ public class JoueurService {
 	
 	@Transactional
 	public void authentification(String nom, String password) {
-		Optional<Joueur> joueur = daoJoueur.findByNom(nom);
+		Optional<Joueur> joueur = daoJoueur.findByPseudo(nom);
 		// SI LE MOT DE PASSE EST LE BON ET QUE L UTILISATEUR N EST PAS DEJA CONNECTE
 		if (password.equals(joueur.get().getMotDePasse()) & !joueur.get().getEstConnecte()) {
 			joueur.get().setEstConnecte(true);
