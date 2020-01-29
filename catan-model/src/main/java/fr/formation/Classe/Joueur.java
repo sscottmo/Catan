@@ -20,6 +20,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
+
 
 @Entity
 @Table(name = "joueur")
@@ -28,76 +32,94 @@ public class Joueur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "JOU_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@Column(name = "JOU_PSEUDO", length = 100, nullable = false)
 	@NotEmpty(message = "Le pseudo est obligatoire")
 	@Size(max = 100)
+	@JsonView(Views.JoueurHorsPartie.class)
 	private String pseudo;
 
 	@Column(name = "JOU_MOT_DE_PASSE", length = 20, nullable = false)
 	@NotEmpty(message = "Le mot de passe est obligatoire (de 4 à 20 caractères)")
 	@Size(min = 4, max = 20, message = "Le mot de passe doit faire entre 4 et 20 caractères")
+	@JsonView(Views.JoueurHorsPartie.class)
 	private String motDePasse;
 
 	@Column(name = "JOU_MAIL", length = 100)
 	@Size(max = 100)
+	@JsonView(Views.JoueurHorsPartie.class)
 	private String mail;
 
 	@Column(name = "JOU_EST_CONNECTE")
+	@JsonView(Views.JoueurHorsPartie.class)
 	private Boolean estConnecte;
 
 	@Column(name = "JOU_RECHERCHE_PARTIE")
+	@JsonView(Views.JoueurHorsPartie.class)
 	private Boolean recherchePartie = false;
 
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="JOU_PARTIE")
+	@JsonView({Views.JoueurHorsPartie.class,Views.JoueurEnPartie.class})
 	private Partie partie;
 	
 	@Column(name="JOU_COULEUR")
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.JoueurEnPartie.class)
 	private Couleur couleur;
 	
 	@OneToMany(mappedBy = "joueur")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.JoueurEnPartie.class)
 	private List<Croisement> mesCroisements;
 	
 	@OneToMany(mappedBy = "joueur")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.JoueurEnPartie.class)
 	private List<Chemin> mesChemins;
 	
 	@Column(name = "JOU_BOIS")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer bois = 0;
 	
 	@Column(name = "JOU_ARGILE")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer argile = 0;
 	
 	@Column(name = "JOU_LAINE")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer laine = 0;
 	
 	@Column(name = "JOU_BLE")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer ble = 0;
 	
 	@Column(name = "JOU_MINERAI")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer minerai = 0;
 	
 	
 	@OneToMany(mappedBy="joueur")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.JoueurEnPartie.class)
 	private List<Carte> main;
 	
 	@Column(name = "JOU_ARMEE")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer armee = 0;
 	
 	@Column(name = "JOU_ROUTEMAX")
 	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
 	private Integer routeMax = 0;
 	
 	

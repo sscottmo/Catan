@@ -16,30 +16,39 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
+
 @Entity
 @Table(name = "Chemin")
 public class Chemin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CHEM_ID")
+	@Column(name="CHEM_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "CHEM_POS_1")
+	@JoinColumn(name="CHEM_POS_1")
+	@JsonView(Views.Chemin.class)
 	private Position pos1;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "CHEM_POS_2")
+	@JoinColumn(name="CHEM_POS_2")
+	@JsonView(Views.Chemin.class)
 	private Position pos2;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "CHEM_JOUEUR")
+	@JoinColumn(name="CHEM_JOUEUR")
+	@JsonView(Views.Chemin.class)
 	private Joueur joueur;
 
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "CHEM_PARTIE")
+	@JoinColumn(name="CHEM_PARTIE")
+	@JsonView(Views.Chemin.class)
 	private Partie partie;
 	
 	private PostureChemin posture;

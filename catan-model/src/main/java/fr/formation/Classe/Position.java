@@ -15,10 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
 
 @Entity
 @Table(name="position")
@@ -26,49 +29,62 @@ public class Position {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="POS_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@Column(name="POS_POS")
+	@JsonView(Views.Position.class)
 	private int pos;
 	
 	@Column(name = "POS_VALEUR")
 	//@Size(max = 2)
+	@JsonView(Views.Position.class)
 	private int val;
 	
 	@Column(name = "POS_TYPE")
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Position.class)
 	private Type type;
 	
 	@OneToOne(mappedBy="posBandit")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private Partie bandit;
 
 	@OneToMany(mappedBy="pos1")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private List<Croisement> croisements1;
 	@OneToMany(mappedBy="pos2")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private List<Croisement> croisements2;
 	@OneToMany(mappedBy="pos3")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private List<Croisement> croisements3;
 	
 	@OneToMany(mappedBy="pos1")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private List<Chemin> chemins1;
 	@OneToMany(mappedBy="pos2")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Position.class)
 	private List<Chemin> chemins2;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="POS_PARTIE")
+	@JsonView(Views.Position.class)
 	private Partie partie;
 	
 	@Column(name = "POS_X")
+	@JsonView(Views.Position.class)
 	private int x = 0;
 	
 	@Column(name = "POS_Y")
+	@JsonView(Views.Position.class)
 	private int y = 0;
 
 	

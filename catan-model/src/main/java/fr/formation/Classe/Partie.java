@@ -17,6 +17,10 @@ import javax.validation.constraints.PositiveOrZero;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
+
 
 @Entity
 @Table(name = "Partie")
@@ -24,51 +28,63 @@ public class Partie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="PART_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 	
 	@OneToMany(mappedBy = "partie")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private List<Joueur> joueurs;
 	
 	@OneToMany(mappedBy = "partie")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private List<Carte> pioche;
 	
 	@Column(name = "PART_BOIS")
 	@PositiveOrZero
+	@JsonView(Views.Partie.class)
 	private int bois = 19;
 	
 	@Column(name = "PART_ARGILE")
 	@PositiveOrZero
+	@JsonView(Views.Partie.class)
 	private int argile = 19;
 	
 	@Column(name = "PART_LAINE")
 	@PositiveOrZero
+	@JsonView(Views.Partie.class)
 	private int laine = 19;
 	
 	@Column(name = "PART_BLE")
 	@PositiveOrZero
+	@JsonView(Views.Partie.class)
 	private int ble = 19;
 	
 	@Column(name = "PART_MINERAI")
 	@PositiveOrZero
+	@JsonView(Views.Partie.class)
 	private int minerai = 19;
 	
 	@OneToOne
 	@JoinColumn(name="PART_POS_BANDIT")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private Position posBandit;
 	
 	@OneToMany(mappedBy = "partie")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private List<Position> terrain;
 	
 	@OneToMany(mappedBy = "partie")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private Set<Croisement> croisements;
 	
 	@OneToMany(mappedBy = "partie")
 	@Cascade(CascadeType.ALL)
+	@JsonView(Views.Partie.class)
 	private Set<Chemin> chemins;
 
 	public int getId() {

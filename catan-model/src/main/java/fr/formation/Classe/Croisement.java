@@ -10,11 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
 
 @Entity
 @Table(name = "Croisement")
@@ -22,35 +25,43 @@ public class Croisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="CROIS_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_1")
+	@JsonView(Views.Croisement.class)
 	private Position pos1;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_2")
+	@JsonView(Views.Croisement.class)
 	private Position pos2;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_3")
+	@JsonView(Views.Croisement.class)
 	private Position pos3;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "CROIS_JOUEUR")
+	@JsonView(Views.Croisement.class)
 	private Joueur joueur;
 
 	@Column(name="CROIS_VILLE")
+	@JsonView(Views.Croisement.class)
 	private Boolean ville = false;
 	
 	@Column(name="CROIS_ACCES_PORT")
+	@JsonView(Views.Croisement.class)
 	private Boolean accesPort = false;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_PARTIE")
+	@JsonView(Views.Croisement.class)
 	private Partie partie;
 	
 	private PostureCroisement posture;

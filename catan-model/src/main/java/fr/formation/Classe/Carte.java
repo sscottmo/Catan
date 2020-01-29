@@ -14,6 +14,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Views.Views;
+
 
 @Entity
 @Table(name = "Carte")
@@ -22,21 +27,25 @@ public class Carte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CARTE_ID")
+	@JsonView(Views.Common.class)
 	private int id = 0;
 	
 	@Column(name="CARTE_CARTEDEV")
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Carte.class)
 	private CarteDev carteDev;
 	
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CARTE_JOUEUR")
+	@JsonView({Views.Carte.class,Views.JoueurEnPartie.class})
 	private Joueur joueur = null;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CARTE_PARTIE")
+	@JsonIgnore
 	private Partie partie;
 	
 	

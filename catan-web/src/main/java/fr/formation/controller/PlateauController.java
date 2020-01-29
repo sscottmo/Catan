@@ -5,22 +5,48 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.Classe.Joueur;
+import fr.formation.DAO.IDAOJoueur;
 import fr.formation.Classe.Chemin;
 import fr.formation.Classe.Croisement;
 import fr.formation.Classe.Position;
 import fr.formation.DAO.IDAOPosition;
+import fr.formation.Views.Views;
 
 @Controller
 public class PlateauController {
 
 	@Autowired
 	private IDAOPosition daoPosition;
-
+	
+	@Autowired
+	private IDAOJoueur daoJoueur;
+	
+	
 	@GetMapping(value="/plateau")
+	@Transactional
+	@JsonView(Views.JoueurEnPartie.class)
 	public String plateau(Model model) {
+		
+		model.addAttribute("joueurs", daoJoueur.findAll());
+		List<List<Integer>> mainJoueurs = new ArrayList<List<Integer>>();
+		for(Joueur j : daoJoueur.findAll()) {
+			if (j.getPartie() != null) {
+				List<Integer> mainJoueur = new ArrayList<Integer>();
+				mainJoueur.add(j.getId());
+				mainJoueur.add(j.getMain().size());
+				mainJoueurs.add(mainJoueur);
+			}
+		}
+		model.addAttribute("mainJoueurs", mainJoueurs);
+		
+		model.addAttribute("positions", daoPosition.orderByPositions());
 		
 //		List<List<Position>> plateau = new ArrayList<List<Position>>();
 //		List<Position> positions = daoPosition.orderByPositions();
