@@ -30,14 +30,14 @@ body {
 	background: green;
 	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 } */
-.hexagon.ocean {
+.hexagon {
 	width: 150px;
 	height: 82.5px;
-	background: blue;
+	background: #0c95c7;
 	position: relative;
 }
 
-.hexagon.ocean:before {
+.hexagon:before {
 	content: "";
 	position: absolute;
 	top: -43.3px;
@@ -46,10 +46,10 @@ body {
 	height: 0;
 	border-left: 75px solid transparent;
 	border-right: 75px solid transparent;
-	border-bottom: 43.3px solid blue;
+	border-bottom: 43.3px solid #0c95c7;
 }
 
-.hexagon.ocean:after {
+.hexagon:after {
 	content: "";
 	position: absolute;
 	bottom: -43.3px;
@@ -58,9 +58,9 @@ body {
 	height: 0;
 	border-left: 75px solid transparent;
 	border-right: 75px solid transparent;
-	border-top: 43.3px solid blue;
+	border-top: 43.3px solid #0c95c7;
 }
-
+/* 
 .hexagon.terre {
 	width: 150px;
 	height: 82.5px;
@@ -90,7 +90,7 @@ body {
 	border-left: 75px solid transparent;
 	border-right: 75px solid transparent;
 	border-top: 43.3px solid green;
-}
+} */
 
 /* disposition du plateau */
 
@@ -99,6 +99,8 @@ div {
 }
 #plateau {
 	min-width: 1300px;
+	margin-top: 150px;
+	
 }
 
 .plateau {
@@ -118,9 +120,6 @@ div {
 	width: 75px;
 }
 
-#ligne1 {
-	margin-top: 150px;
-}
 
 /* Affichage des menus et tableaux */
 
@@ -174,12 +173,10 @@ th, td {
 
 .croisement {
 	content: "";
-	width: 0px;
-	height: 0px;
-	border-radius: 50%;
-	border-style: solid;
-	border-width: 10px;
-	border-color: white;
+	background-color:white;
+    height:20px;
+    width:20px;
+    border-radius:35%;
 	z-index: 10;
 	position: absolute;
 	display: inline;
@@ -273,4 +270,142 @@ th, td {
 
 .chemin.gauchehaut:hover, .chemin.gauchebas:hover,.chemin.droitehaut:hover, .chemin.droitebas:hover {
 	border-width: 5px;
+}
+
+/* Affichage de la valeur
+ */
+.valeur{
+	position:absolute;
+	top: 30%;
+	left: 44%;
+	font-style: oblique;
+	font-weight:bold;
+	color:white;
+	font-size:x-large
+}
+
+
+
+/* Arrière plans des hexagones */
+
+
+.Bois
+	{
+	background-color: #0d732a
+	}
+.Bois:Before{
+		border-bottom: 43.3px solid #0d732a;
+}
+
+.Bois:After{	
+		border-top: 43.3px solid #0d732a;
+}
+
+
+.Minerai
+	{
+	background-color: #8c8980
+	}
+.Minerai:Before{
+		border-bottom: 43.3px solid #8c8980;
+}
+
+.Minerai:After{	
+		border-top: 43.3px solid #8c8980;
+}
+
+
+.Ble
+	{
+	background-color: #cfad40
+	}
+.Ble:Before{
+		border-bottom: 43.3px solid #cfad40;
+}
+
+.Ble:After{	
+		border-top: 43.3px solid #cfad40;
+}
+
+.Laine
+	{
+	background-color: #39d611
+	}
+.Laine:Before{
+		border-bottom: 43.3px solid #39d611;
+}
+
+.Laine:After{	
+		border-top: 43.3px solid #39d611;
+}
+
+.Argile
+	{
+	background-color: #cc4c2f
+	}
+.Argile:Before{
+		border-bottom: 43.3px solid #cc4c2f;
+}
+
+.Argile:After{	
+		border-top: 43.3px solid #cc4c2f;
+}
+
+.Desert
+	{
+	background-color: #f5e9c4
+	}
+.Desert:Before{
+		border-bottom: 43.3px solid #f5e9c4;
+}
+
+.Desert:After{	
+		border-top: 43.3px solid #f5e9c4;
+}
+
+/* Mise en avant des ports */
+
+p.Port,
+p.PortMinerai,
+P.PortBois,
+p.PortBle,
+p.PortLaine,
+p.PortArgile {
+	content: "";
+      width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 50px solid white;
+	z-index: 1;
+	position: absolute;
+	left : 33%;
+	top: 15%
+}
+
+
+p.PortMinerai{
+	border-bottom: 50px solid #8c8980;	
+}
+
+p.PortBois{
+	border-bottom: 50px solid #0d732a;	
+}
+
+p.PortLaine{
+	border-bottom: 50px solid #39d611;	
+}
+
+p.PortArgile{
+	border-bottom: 50px solid #cc4c2f;
+}
+
+p.PortBle{
+	border-bottom: 50px solid #cfad40;	
+}
+
+/* Bordures sur les croisements portuaires */
+
+ .croisement.portuaire{
+	    border:3px solid #091ed9;    
 }

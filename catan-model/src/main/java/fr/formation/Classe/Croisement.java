@@ -64,6 +64,7 @@ public class Croisement {
 	@JsonView(Views.Croisement.class)
 	private Partie partie;
 	
+	@JsonView(Views.Croisement.class)
 	private PostureCroisement posture;
 	
 	
@@ -147,10 +148,10 @@ public class Croisement {
 		if (pos1.getId() != p.getId()) {
 			positions.add(pos1);
 		}
-		else if (pos2.getId() != p.getId()) {
+		if (pos2.getId() != p.getId()) {
 			positions.add(pos2);
 		}
-		else if (pos3.getId() != p.getId()) {
+		if (pos3.getId() != p.getId()) {
 			positions.add(pos3);
 		}
 		return positions;
@@ -195,7 +196,7 @@ public class Croisement {
 				}
 			}
 		
-		
+
 		}
 
 }

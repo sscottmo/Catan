@@ -32,13 +32,14 @@
 		</div>
 	</section>
 	<section id=plateau>
-		<section th:each ="ligne : ${plateau}">
-			<section th:each="colonne : ${ligne}" >
-				<div class="hexagon" th:id="${colonne[0].id}" th:value="${colonne[0].type}">
-					<div th:each= "croisement : ${colonne[1]}" th:value= "${croisement.posture}" th:id = "${croisement.id}"></div>
-					<div th:each= "chemin : ${colonne[2]}" th:value= "${chemin.posture}" th:id = "${chemin.id}"></div>
+		<section class="plateau" th:each ="ligne : ${plateau}">
+				<div class="hexagon" th:each="colonne : ${ligne}" th:id="${colonne[0].id}" th:classappend="${colonne[0].type}">
+					<p th:if="${colonne[0].val != 0}" th:class="valeur">[[${colonne[0].val}]]</p>
+					<p th:if="${#strings.contains(colonne[0].type, 'Port')}" th:class="${colonne[0].type}"></p>
+					<div class="croisement portuaire" th:each= "croisement : ${colonne[1]}" th:if="${croisement.accesPort == true}" th:classappend= "${croisement.posture}" th:id = "${croisement.id}"></div>
+					<div class="croisement" th:each= "croisement : ${colonne[1]}" th:if="${croisement.accesPort != true}" th:classappend= "${croisement.posture}" th:id = "${croisement.id}"></div>
+					<div class="chemin" th:each= "chemin : ${colonne[2]}" th:classappend= "${chemin.posture}" th:id = "${chemin.id}"></div>
 				</div>
-			</section>
 		</section>
 	</section>
 					

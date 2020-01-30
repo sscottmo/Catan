@@ -51,6 +51,7 @@ public class Chemin {
 	@JsonView(Views.Chemin.class)
 	private Partie partie;
 	
+	@JsonView(Views.Chemin.class)
 	private PostureChemin posture;
 
 
@@ -90,7 +91,7 @@ public class Chemin {
 		if (pos1.getId() != p.getId()) {
 			positions.add(pos1);
 		}
-		else if (pos2.getId() != p.getId()) {
+		if (pos2.getId() != p.getId()) {
 			positions.add(pos2);
 		}
 		return positions;

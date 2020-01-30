@@ -53,24 +53,24 @@ public class Position {
 
 	@OneToMany(mappedBy="pos1")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.Position.class)
+	@JsonView(Views.PositionWithCheminAndCroisement.class)
 	private List<Croisement> croisements1;
 	@OneToMany(mappedBy="pos2")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.Position.class)
+	@JsonView(Views.PositionWithCheminAndCroisement.class)
 	private List<Croisement> croisements2;
 	@OneToMany(mappedBy="pos3")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.Position.class)
+	@JsonView(Views.PositionWithCheminAndCroisement.class)
 	private List<Croisement> croisements3;
 	
 	@OneToMany(mappedBy="pos1")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.Position.class)
+	@JsonView(Views.PositionWithCheminAndCroisement.class)
 	private List<Chemin> chemins1;
 	@OneToMany(mappedBy="pos2")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.Position.class)
+	@JsonView(Views.PositionWithCheminAndCroisement.class)
 	private List<Chemin> chemins2;
 	
 	@ManyToOne

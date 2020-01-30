@@ -106,7 +106,6 @@ public class PlateauController {
 					
 					croisementsExistants.addAll(croisements);
 					cheminsExistants.addAll(chemins);
-					positions.remove(p);
 					
 					ligne.add(colonne);
 				}

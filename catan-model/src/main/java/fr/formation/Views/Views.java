@@ -17,5 +17,7 @@ public class Views {
 	}
 	public static class Position extends Common {
 	}
+	public static class PositionWithCheminAndCroisement extends Position {
+	}
 
 }
