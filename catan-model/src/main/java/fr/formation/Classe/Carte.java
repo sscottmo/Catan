@@ -32,7 +32,7 @@ public class Carte {
 	
 	@Column(name="CARTE_CARTEDEV")
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Carte.class)
+	@JsonView({Views.Carte.class,Views.JoueurEnPartie.class})
 	private CarteDev carteDev;
 	
 	
