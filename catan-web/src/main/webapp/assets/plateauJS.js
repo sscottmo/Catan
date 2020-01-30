@@ -36,3 +36,19 @@ document.querySelector('.dropdown')
 // });
 // });
 //
+
+
+let eventSource = new EventSource('http://localhost:8080/catan-web/api/plateau/sse');
+
+
+eventSource.addEventListener('croisement',(event)=>{
+//	//Si on reçoit un string
+//	  let msg = event.data;
+//	  alert(msg);
+//	  
+//	  //Si on a reçu un object json
+//	  let object = JSON.parse(event.data);
+//	  console.log(object);
+	let croisement = JSON.parse(event.data);
+	saveCroisement(croisement);
+})
