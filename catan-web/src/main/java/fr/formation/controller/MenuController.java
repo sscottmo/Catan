@@ -33,10 +33,6 @@ public class MenuController {
 	public String ajoutProduit(@Valid @ModelAttribute Joueur joueur, BindingResult result, Model model) {
 
 		
-		System.out.println("ren");
-		System.out.println("ren");
-		System.out.println("ren");
-		System.out.println("ren");
 		if (result.hasErrors()) {
 			return "redirect:/inscription";
 		}

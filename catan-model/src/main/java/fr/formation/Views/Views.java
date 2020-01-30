@@ -13,6 +13,8 @@ public class Views {
 	}
 	public static class JoueurEnPartie extends Common {
 	}
+	public static class JoueurCalculPoint extends Common {
+	}
 	public static class Partie extends Common {
 	}
 	public static class Position extends Common {

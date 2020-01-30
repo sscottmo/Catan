@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.formation.Classe.Carte;
+import fr.formation.Classe.CarteDev;
+import fr.formation.Classe.Croisement;
 import fr.formation.Classe.Joueur;
 import fr.formation.DAO.IDAOJoueur;
 
@@ -43,4 +46,31 @@ public class JoueurService {
 			
 	}
 	
+	
+	
+	
+//	@Transactional
+//	public Joueur routeLaPlusLongue() {
+//		List<Joueur> joueurs = daoJoueur.findAll();
+//		Joueur jAvecPlusLongueRoute = null;
+//		int plusLongueRoute = 4;
+//		for(Joueur j : joueurs) {
+//			List<List<Chemin>> listeRoute = new ArrayList<List<Chemin>>();
+//			List<Chemin> mesChemins = j.getMesChemins();
+//			while(!mesChemins.isEmpty()) {
+//				if(listeRoute.isEmpty()) {
+//					List<Chemin> route = new ArrayList<Chemin>();
+//					route.add(mesChemins.remove(0));
+//					listeRoute.add(route);
+//				}
+//				boolean ajout=false;
+//				for(Chemin c : mesChemins) {
+//					if()
+//				}
+//				
+//			}
+//		}
+//		return jAvecPlusLongueRoute;
+//	}
+//	
 }

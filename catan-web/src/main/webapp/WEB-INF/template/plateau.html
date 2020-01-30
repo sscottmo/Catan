@@ -60,7 +60,7 @@
 						th:if="${main[0] == joueur.id}" 
 						th:text="${main[1]}"/>
 					<td>[[${joueur.bois + joueur.argile + joueur.minerai + joueur.ble + joueur.laine}]]</td>
-					<td> 0 </td>
+					<td>[[${joueur.PDV}]]</td>
 				</tr>
 			</tbody>
 		</table>

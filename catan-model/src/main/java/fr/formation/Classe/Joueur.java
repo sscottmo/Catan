@@ -63,7 +63,7 @@ public class Joueur {
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="JOU_PARTIE")
-	@JsonView({Views.JoueurHorsPartie.class,Views.JoueurEnPartie.class})
+	@JsonView({Views.JoueurHorsPartie.class,Views.JoueurEnPartie.class,Views.JoueurCalculPoint.class})
 	private Partie partie;
 	
 	@Column(name="JOU_COULEUR")
@@ -73,7 +73,7 @@ public class Joueur {
 	
 	@OneToMany(mappedBy = "joueur")
 	@Cascade(CascadeType.ALL)
-	@JsonView(Views.JoueurEnPartie.class)
+	@JsonView({Views.JoueurEnPartie.class,Views.JoueurCalculPoint.class})
 	private List<Croisement> mesCroisements;
 	
 	@OneToMany(mappedBy = "joueur")
@@ -81,11 +81,22 @@ public class Joueur {
 	@JsonView(Views.JoueurEnPartie.class)
 	private List<Chemin> mesChemins;
 	
+	@Column(name = "JOU_PDV")
+	@PositiveOrZero
+	@JsonView(Views.JoueurEnPartie.class)
+	private Integer PDV = 0;
+	
 	@Column(name = "JOU_BOIS")
 	@PositiveOrZero
 	@JsonView(Views.JoueurEnPartie.class)
 	private Integer bois = 0;
 	
+	public Integer getPDV() {
+		return PDV;
+	}
+	public void setPDV(Integer pDV) {
+		PDV = pDV;
+	}
 	@Column(name = "JOU_ARGILE")
 	@PositiveOrZero
 	@JsonView(Views.JoueurEnPartie.class)
@@ -114,12 +125,12 @@ public class Joueur {
 	
 	@Column(name = "JOU_ARMEE")
 	@PositiveOrZero
-	@JsonView(Views.JoueurEnPartie.class)
+	@JsonView({Views.JoueurEnPartie.class,Views.JoueurCalculPoint.class})
 	private Integer armee = 0;
 	
 	@Column(name = "JOU_ROUTEMAX")
 	@PositiveOrZero
-	@JsonView(Views.JoueurEnPartie.class)
+	@JsonView({Views.JoueurEnPartie.class,Views.JoueurCalculPoint.class})
 	private Integer routeMax = 0;
 	
 	

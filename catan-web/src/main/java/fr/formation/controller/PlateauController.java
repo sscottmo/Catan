@@ -56,16 +56,8 @@ public class PlateauController {
 		}
 		model.addAttribute("mainJoueurs", mainJoueurs);
 		
-
-		System.out.println(sessionJoueur.getId());
-		System.out.println(sessionJoueur.getPseudo());
-		System.out.println(sessionJoueur.getMain());
 		List<Integer> carteDev = new ArrayList<Integer>();
-		int chevalier=0;
-		int PDV=0;
-		int constructeur=0;
-		int decouverte=0;
-		int monopole=0;
+		int chevalier=0; int PDV=0; int constructeur=0; int decouverte=0; int monopole=0;
 		for (Carte c : sessionJoueur.getMain()) {
 			if (c.getCarteDev() == CarteDev.Chevalier) {chevalier++;}
 			if (c.getCarteDev() == CarteDev.PointDeVictoire) {PDV++;}
@@ -73,12 +65,27 @@ public class PlateauController {
 			if (c.getCarteDev() == CarteDev.ProgresDecouverte) {decouverte++;}
 			if (c.getCarteDev() == CarteDev.ProgresMonopole) {monopole++;}
 		}
-		carteDev.add(chevalier);
-		carteDev.add(PDV);
-		carteDev.add(constructeur);
-		carteDev.add(decouverte);
-		carteDev.add(monopole);
+		carteDev.add(chevalier); carteDev.add(PDV); carteDev.add(constructeur);	carteDev.add(decouverte); carteDev.add(monopole);
 		model.addAttribute("carteDev", carteDev);
+		
+		for(Joueur j : daoJoueur.findAll()) {
+			if (j.getPartie() != null) {
+				int pdv = 0;
+				for(Croisement c : j.getMesCroisements()) {
+					if (c.getVille() == true) {
+						pdv+=2;
+					} else {
+						pdv+=1;
+					}
+				}
+				for(Carte c : j.getMain()) {
+					if(c.getCarteDev() == CarteDev.PointDeVictoire) {
+						pdv+=1;
+					}
+				}
+				j.setPDV(pdv);
+			}
+		}
 		
 		model.addAttribute("positions", daoPosition.orderByPositions());
 		
