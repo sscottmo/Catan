@@ -15,7 +15,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.Classe.Carte;
 import fr.formation.Classe.CarteDev;
+import fr.formation.Classe.Chemin;
+import fr.formation.Classe.Croisement;
 import fr.formation.Classe.Joueur;
+import fr.formation.Classe.Position;
 import fr.formation.DAO.IDAOJoueur;
 import fr.formation.DAO.IDAOPosition;
 import fr.formation.Views.Views;
@@ -95,10 +98,10 @@ public class PlateauController {
 //			});
 //			plateau.add(ligne);
 //		}
-//		List plateau = new ArrayList();
-//		List<Position> positions = daoPosition.orderByPositions();
-//		List<Croisement> croisementsExistants = new ArrayList<Croisement>();
-//		List<Chemin> cheminsExistants = new ArrayList<Chemin>();
+		List plateau = new ArrayList();
+		List<Position> positions = daoPosition.orderByPositions();
+		List<Croisement> croisementsExistants = new ArrayList<Croisement>();
+		List<Chemin> cheminsExistants = new ArrayList<Chemin>();
 //		
 //		
 //		for (int i=1; i<8 ; i++) {
