@@ -38,7 +38,7 @@ public class Joueur {
 	@Column(name = "JOU_PSEUDO", length = 100, nullable = false)
 	@NotEmpty(message = "Le pseudo est obligatoire")
 	@Size(max = 100)
-	@JsonView(Views.JoueurHorsPartie.class)
+	@JsonView({Views.JoueurHorsPartie.class,Views.JoueurEnPartie.class})
 	private String pseudo;
 
 	@Column(name = "JOU_MOT_DE_PASSE", length = 20, nullable = false)
