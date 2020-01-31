@@ -21,5 +21,7 @@ public class Views {
 	}
 	public static class PositionWithCheminAndCroisement extends Position {
 	}
+	public static class CroisementAvecCouleur extends Croisement {
+	}
 
 }

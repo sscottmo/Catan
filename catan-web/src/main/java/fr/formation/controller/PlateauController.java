@@ -28,22 +28,21 @@ public class PlateauController {
 
 	@Autowired
 	private IDAOPosition daoPosition;
-	
+
 	@Autowired
 	private IDAOJoueur daoJoueur;
-	
-	
-	@GetMapping(value="/plateau")
+
+	@GetMapping(value = "/plateau")
 	@Transactional
 	@JsonView(Views.JoueurEnPartie.class)
 	public String plateau(Model model, HttpSession session) {
-		
+
 		model.addAttribute("joueurs", daoJoueur.findAll());
 //		Joueur sessionJoueur=(Joueur)session.getAttribute("joueur");
 		Joueur sessionJoueur = daoJoueur.findById(1).get();
-		model.addAttribute("sessionJoueur",sessionJoueur);
+		model.addAttribute("sessionJoueur", sessionJoueur);
 		List<List<Integer>> mainJoueurs = new ArrayList<List<Integer>>();
-		for(Joueur j : daoJoueur.findAll()) {
+		for (Joueur j : daoJoueur.findAll()) {
 			if (j.getPartie() != null) {
 				List<Integer> mainJoueur = new ArrayList<Integer>();
 				mainJoueur.add(j.getId());
@@ -55,40 +54,60 @@ public class PlateauController {
 			}
 		}
 		model.addAttribute("mainJoueurs", mainJoueurs);
-		
+
 		List<Integer> carteDev = new ArrayList<Integer>();
-		int chevalier=0; int PDV=0; int constructeur=0; int decouverte=0; int monopole=0;
+		int chevalier = 0;
+		int PDV = 0;
+		int constructeur = 0;
+		int decouverte = 0;
+		int monopole = 0;
 		for (Carte c : sessionJoueur.getMain()) {
-			if (c.getCarteDev() == CarteDev.Chevalier) {chevalier++;}
-			if (c.getCarteDev() == CarteDev.PointDeVictoire) {PDV++;}
-			if (c.getCarteDev() == CarteDev.ProgresRoute) {constructeur++;}
-			if (c.getCarteDev() == CarteDev.ProgresDecouverte) {decouverte++;}
-			if (c.getCarteDev() == CarteDev.ProgresMonopole) {monopole++;}
+			if (c.getCarteDev() == CarteDev.Chevalier) {
+				chevalier++;
+			}
+			if (c.getCarteDev() == CarteDev.PointDeVictoire) {
+				PDV++;
+			}
+			if (c.getCarteDev() == CarteDev.ProgresRoute) {
+				constructeur++;
+			}
+			if (c.getCarteDev() == CarteDev.ProgresDecouverte) {
+				decouverte++;
+			}
+			if (c.getCarteDev() == CarteDev.ProgresMonopole) {
+				monopole++;
+			}
 		}
-		carteDev.add(chevalier); carteDev.add(PDV); carteDev.add(constructeur);	carteDev.add(decouverte); carteDev.add(monopole);
+		carteDev.add(chevalier);
+		carteDev.add(PDV);
+		carteDev.add(constructeur);
+		carteDev.add(decouverte);
+		carteDev.add(monopole);
 		model.addAttribute("carteDev", carteDev);
-		
-		for(Joueur j : daoJoueur.findAll()) {
+
+		for (Joueur j : daoJoueur.findAll()) {
 			if (j.getPartie() != null) {
 				int pdv = 0;
-				for(Croisement c : j.getMesCroisements()) {
-					if (c.getVille() == true) {
-						pdv+=2;
-					} else {
-						pdv+=1;
+				for (Croisement c : j.getMesCroisements()) {
+					if (c.getVille() != null) {
+						if (c.getVille() == true) {
+							pdv += 2;
+						} else {
+							pdv += 1;
+						}
 					}
 				}
-				for(Carte c : j.getMain()) {
-					if(c.getCarteDev() == CarteDev.PointDeVictoire) {
-						pdv+=1;
+				for (Carte c : j.getMain()) {
+					if (c.getCarteDev() == CarteDev.PointDeVictoire) {
+						pdv += 1;
 					}
 				}
 				j.setPDV(pdv);
 			}
 		}
-		
+
 		model.addAttribute("positions", daoPosition.orderByPositions());
-		
+
 //		List<List<Position>> plateau = new ArrayList<List<Position>>();
 //		List<Position> positions = daoPosition.orderByPositions();
 //		for (int i=1; i<8 ; i++) {
@@ -154,51 +173,50 @@ public class PlateauController {
 //			});
 //			plateau.add(ligne);
 //		}
-		
-		
-		for (int i=1; i<8 ; i++) {
+
+		for (int i = 1; i < 8; i++) {
 			int s = i;
-			
-			
+
 			List ligne = new ArrayList();
 			positions.forEach(p -> {
 				if (p.getX() == s) {
 					List colonne = new ArrayList();
 					colonne.add(p);
 					List<Croisement> croisements = p.getLesCroisements();
-					croisementsExistants.forEach(c ->{
+					croisementsExistants.forEach(c -> {
 						if (croisements.contains(c)) {
 							croisements.remove(c);
 						}
 					});
 
-					List<Chemin> chemins =p.getLesChemins();
-					cheminsExistants.forEach(c ->{
+					List<Chemin> chemins = p.getLesChemins();
+					cheminsExistants.forEach(c -> {
 						if (chemins.contains(c)) {
 							chemins.remove(c);
 						}
 					});
-					
+
 					croisements.forEach(c -> {
 						c.trouverPosture(p);
 					});
-					
+
 					chemins.forEach(c -> {
 						c.trouverPosture(p);
 					});
-					
+
 					colonne.add(croisements);
 					colonne.add(chemins);
-					
+
 					croisementsExistants.addAll(croisements);
 					cheminsExistants.addAll(chemins);
-					
+
 					ligne.add(colonne);
 				}
 			});
 			plateau.add(ligne);
 		}
-		
-		model.addAttribute("plateau", plateau );
+
+		model.addAttribute("plateau", plateau);
 		return "plateau";
-	}}
+	}
+}

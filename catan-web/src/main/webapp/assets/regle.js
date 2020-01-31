@@ -48,15 +48,15 @@ document.querySelector('#findetour')
 		
 		});
 
-
-let eventSource = new EventSource('http://172.16.44.102:8080/catan-web/api/plateau/sse');
-
-eventSource.addEventListener('message', (croisement,couleur) => {
-	
-	let produit = {
-			libelle: event.data,
-			prix: 0
-	};
-	afficheProduitURL(produit);
-	
-})
+//
+//let eventSource = new EventSource('http://172.16.44.102:8080/catan-web/api/plateau/sse');
+//
+//eventSource.addEventListener('message', (croisement,couleur) => {
+//	
+//	let produit = {
+//			libelle: event.data,
+//			prix: 0
+//	};
+//	afficheProduitURL(produit);
+//	
+//})

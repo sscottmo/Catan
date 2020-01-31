@@ -68,7 +68,7 @@ public class Joueur {
 	
 	@Column(name="JOU_COULEUR")
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.JoueurEnPartie.class)
+	@JsonView({Views.JoueurEnPartie.class , Views.CroisementAvecCouleur.class})
 	private Couleur couleur;
 	
 	@OneToMany(mappedBy = "joueur")
