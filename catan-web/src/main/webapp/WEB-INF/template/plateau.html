@@ -36,12 +36,21 @@
 				<div class="hexagon" th:each="colonne : ${ligne}" th:id="'p_' + ${colonne[0].id}" th:classappend="${colonne[0].type}">
 					<p th:if="${colonne[0].val != 0}" th:class="valeur">[[${colonne[0].val}]]</p>
 					<p th:if="${#strings.contains(colonne[0].type, 'Port')}" th:class="${colonne[0].type}"></p>
-					<div class="croisement portuaire" th:each= "croisement : ${colonne[1]}" th:if="${croisement.accesPort == true}" th:classappend= "${croisement.posture}" th:id = "'cr_' + ${croisement.id}"></div>
-					<div class="croisement" th:each= "croisement : ${colonne[1]}" th:if="${croisement.accesPort != true}" th:classappend= "${croisement.posture}" th:id = "'cr_' + ${croisement.id}"></div>
-					<div class="chemin" th:each= "chemin : ${colonne[2]}" th:classappend= "${chemin.posture}" th:id = "'ch_' + ${chemin.id} " onclick=ajouteCroisement(${chemin.id},${sessionJoueur.couleur})></div>
+					<th:block th:each= "croisement : ${colonne[1]}" th:switch="${croisement.joueur}">
+							<div th:if="${croisement.accesPort == true && croisement.joueur == null}" class="croisement portuaire"  th:classappend= "${croisement.posture}" th:id = "'cr_' + ${croisement.id}"></div>
+							<div th:if="${croisement.accesPort != true && croisement.joueur == null}" class="croisement" th:classappend= "${croisement.posture}" th:id = "'cr_' + ${croisement.id}"></div>
+							<div th:if="${croisement.accesPort == true && croisement.joueur != null}" class="croisement portuaire" th:classappend= "${croisement.posture + ' ' + croisement.joueur.couleur}" th:id = "'cr_' + ${croisement.id}"></div>
+							<div th:if="${croisement.accesPort != true && croisement.joueur != null}" class="croisement" th:classappend= "${croisement.posture + ' ' + croisement.joueur.couleur}" th:id = "'cr_' + ${croisement.id}"></div>
+					</th:block>
+					
+					<th:block th:each= "chemin : ${colonne[2]}" th:switch="${chemin.joueur}">
+						<div th:case="null" class="chemin"  th:classappend= "${chemin.posture}" th:id = "'ch_' + ${chemin.id} "></div>
+						<div th:case="*" class="chemin"  th:classappend= "${chemin.posture + ' ' + chemin.joueur.couleur}" th:id = "'ch_' + ${chemin.id} ")></div>
+					</th:block>				
 				</div>
 		</section>
 	</section>
+	
 					
 
 		<table id="joueurs" class="table table-striped table-dark">

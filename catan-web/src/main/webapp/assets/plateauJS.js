@@ -58,17 +58,59 @@ for (i=1 ; i<55 ; i++) {
 let eventSource = new EventSource('http://localhost:8080/catan-web/api/plateau/sse');
 
 
-eventSource.addEventListener('croisement',(event)=>{
-// //Si on reçoit un string
-// let msg = event.data;
-// alert(msg);
-//	  
-// //Si on a reçu un object json
-// let object = JSON.parse(event.data);
-// console.log(object);
-	let croisement = JSON.parse(event.data);
-	let id= '#cr_'+ croisement.id;
-	let couleur = croisement.couleur
+eventSource.addEventListener('message',(event)=>{
+
 	
+	let object = JSON.parse(event.data);
+	let id= '#cr_'+ object[0];
+	let couleur = object[1];
 	ajouteCroisement(id, couleur);
 })
+
+
+//Chemins
+
+
+for (i=1 ; i<73 ; i++) {
+	let j = i;
+	let idChem = '#ch_'+ i.toString();
+	document.querySelector(idChem)
+			.addEventListener('click', (event) => {
+				let data ={
+						"id": j
+						};
+
+				modifierCheminAjax(data);
+				});
+}
+
+
+function modifierCheminAjax(data) {
+	
+	
+	let idRecu = fetch('http://localhost:8080/catan-web/api/chemin',{
+		method: 'POST',
+		headers:{
+			'Content-Type': 'application/json'
+				},
+		body: JSON.stringify(data)
+	}).then(resp => resp.json());
+}
+
+
+let eventSource2 = new EventSource('http://localhost:8080/catan-web/api/chemin/sse');
+
+
+eventSource2.addEventListener('message',(event)=>{
+
+	
+	let object = JSON.parse(event.data);
+	let id= '#ch_'+ object[0];
+	let couleur = object[1];
+	ajouteChemin(id, couleur);
+})
+
+function ajouteChemin(id,couleur) {
+	document.querySelector(id)
+			.style.backgroundColor=couleur;
+}

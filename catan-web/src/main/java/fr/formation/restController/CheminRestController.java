@@ -17,18 +17,18 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.Classe.Couleur;
-import fr.formation.Classe.Croisement;
+import fr.formation.Classe.Chemin;
 import fr.formation.Classe.Joueur;
-import fr.formation.DAO.IDAOCroisement;
+import fr.formation.DAO.IDAOChemin;
 import fr.formation.DAO.IDAOJoueur;
 import fr.formation.Views.Views;
 
 @RestController
-@RequestMapping("/api/plateau")
-public class PlateauRestController {
+@RequestMapping("/api/chemin")
+public class CheminRestController {
 
 	@Autowired
-	private IDAOCroisement daoCroisement;
+	private IDAOChemin daoChemin;
 	
 	@Autowired
 	private IDAOJoueur daoJoueur;
@@ -38,19 +38,19 @@ public class PlateauRestController {
 	@PostMapping
 	@JsonView(Views.JoueurEnPartie.class)
 	@Transactional
-	public Croisement save(@RequestBody Croisement crois, HttpSession session) {
+	public Chemin save(@RequestBody Chemin chem, HttpSession session) {
 //		System.out.println(produit.getLibelle());
-		int id = crois.getId();
+		int id = chem.getId();
 		Joueur j = (Joueur) session.getAttribute("joueur");
 		Joueur joueur = daoJoueur.findById(j.getId()).get();
-		Croisement croisementJoueur = this.daoCroisement.findById(id);
-		croisementJoueur.setJoueur(joueur);
+		Chemin cheminJoueur = this.daoChemin.findById(id).get();
+		cheminJoueur.setJoueur(joueur);
 //		System.out.println(joueur.getBle());
-		joueur.getMesCroisements().add(croisementJoueur);
-//		joueur.getMesCroisements().forEach(c -> {
+		joueur.getMesChemins().add(cheminJoueur);
+//		joueur.getMesChemins().forEach(c -> {
 //			System.out.println(c.getId());
 //			});
-		daoCroisement.save(croisementJoueur);
+		daoChemin.save(cheminJoueur);
 		
 		
 		Couleur couleurJoueur = joueur.getCouleur();
@@ -74,7 +74,7 @@ public class PlateauRestController {
 		data.add(id);
 		data.add(couleur);
 		
-		this.daoCroisement.save(croisementJoueur);
+		this.daoChemin.save(cheminJoueur);
 		for (SseEmitter emitter : this.emitters) {
 			try {
 				emitter.send(data);
@@ -84,7 +84,7 @@ public class PlateauRestController {
 				emitter.completeWithError(ex);
 			}
 		}
-		return croisementJoueur;
+		return cheminJoueur;
 	}
 
 

@@ -182,6 +182,7 @@ th, td {
 	display: inline;
 }
 
+
 .croisement.haut {
 	top: -51px;
 	left: 65px;
@@ -257,6 +258,36 @@ th, td {
 	transform: rotate(-120deg);
 	left: 111px;
 	top: 63px
+}
+
+/* Couleurs des chemins et des croisements  */
+ .Orange{
+		background-color:orange;
+		border-color: orange;
+		color: orange;
+		
+		
+}
+
+.Violet{
+		background-color:purple;
+		border-color: purple;
+		color: purple;
+		
+}
+
+.Marron{
+		background-color:brown;
+		border-color: brown;
+		color: brown;
+		
+}
+
+.Cyan{
+		background-color:cyan;
+		border-color: cyan;
+		color: cyan;
+	
 }
 
 /* Grossissement des chemins et croisements au passage de la souris */
