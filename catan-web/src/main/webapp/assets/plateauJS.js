@@ -114,5 +114,5 @@ function ajouteChemin(id,couleur) {
 	document.querySelector(id)
 			.style.color=couleur;
 	document.querySelector(id)
-			.style.borderColor=couleur;
+	.style.borderColor=couleur;
 }
