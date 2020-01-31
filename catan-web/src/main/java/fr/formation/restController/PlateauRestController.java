@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,19 +20,26 @@ import com.fasterxml.jackson.annotation.JsonView;
 import fr.formation.Classe.Couleur;
 import fr.formation.Classe.Croisement;
 import fr.formation.Classe.Joueur;
+import fr.formation.Classe.Position;
+import fr.formation.Classe.Type;
 import fr.formation.DAO.IDAOCroisement;
 import fr.formation.DAO.IDAOJoueur;
+import fr.formation.DAO.IDAOPosition;
 import fr.formation.Views.Views;
 
 @RestController
 @RequestMapping("/api/plateau")
 public class PlateauRestController {
+	
+	@Autowired
+	private IDAOPosition daoPosition;
 
 	@Autowired
 	private IDAOCroisement daoCroisement;
 	
 	@Autowired
 	private IDAOJoueur daoJoueur;
+
 
 	private List<SseEmitter> emitters = new ArrayList<SseEmitter>();
 	
@@ -87,20 +95,49 @@ public class PlateauRestController {
 		return croisementJoueur;
 	}
 
-
+	@PostMapping("/de")
+	@JsonView(Views.AjoutRessource.class)
+	@Transactional
+	public void ajouteRes(@RequestBody Joueur resDe, Model model) {
+		int de = resDe.getId();
+		for(Position p : daoPosition.findAll()) {
+			if(p.getVal() == de) {
+				for(Croisement c : p.getLesCroisements()) {
+					if(c.getJoueur() != null) {
+						Type type = p.getType();
+						if(type == Type.Argile) {
+							c.getJoueur().setArgile(c.getJoueur().getArgile()+1);
+						}
+						if(type == Type.Bois) {
+							c.getJoueur().setBois(c.getJoueur().getBois()+1);
+						}
+						if(type == Type.Laine) {
+							c.getJoueur().setLaine(c.getJoueur().getLaine()+1);
+						}
+						if(type == Type.Ble) {
+							c.getJoueur().setBle(c.getJoueur().getBle()+1);
+						}
+						if(type == Type.Minerai) {
+							c.getJoueur().setMinerai(c.getJoueur().getMinerai()+1);
+						}
+					}
+				}
+			}
+		}
+	}
 
 	@GetMapping("/sse")
 	public SseEmitter Sse() {
 		SseEmitter emitter = new SseEmitter();
-		// Actions à faire quand l'event est complété
+		// Actions ï¿½ faire quand l'event est complï¿½tï¿½
 		emitter.onCompletion(() -> {
-			// Permet d'être sur qu'on est seul à utiliser la liste
+			// Permet d'ï¿½tre sur qu'on est seul ï¿½ utiliser la liste
 			synchronized (this.emitters) {
 				this.emitters.remove(emitter);
 
 			}
 		});
-		// Actions à faire quand l'event est en timeout
+		// Actions ï¿½ faire quand l'event est en timeout
 		emitter.onTimeout(() -> {
 			emitter.complete();
 

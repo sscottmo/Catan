@@ -21,6 +21,8 @@ public class Views {
 	}
 	public static class PositionWithCheminAndCroisement extends Position {
 	}
+	public static class AjoutRessource extends JoueurEnPartie {
+	}
 	public static class CroisementAvecCouleur extends Croisement {
 	}
 

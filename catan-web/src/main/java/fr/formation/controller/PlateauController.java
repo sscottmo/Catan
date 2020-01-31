@@ -38,8 +38,8 @@ public class PlateauController {
 	public String plateau(Model model, HttpSession session) {
 
 		model.addAttribute("joueurs", daoJoueur.findAll());
-//		Joueur sessionJoueur=(Joueur)session.getAttribute("joueur");
-		Joueur sessionJoueur = daoJoueur.findById(1).get();
+		Joueur sessionJoueur=(Joueur)session.getAttribute("joueur");
+//		Joueur sessionJoueur = daoJoueur.findById(1).get();
 		model.addAttribute("sessionJoueur", sessionJoueur);
 		List<List<Integer>> mainJoueurs = new ArrayList<List<Integer>>();
 		for (Joueur j : daoJoueur.findAll()) {
@@ -88,13 +88,13 @@ public class PlateauController {
 		for (Joueur j : daoJoueur.findAll()) {
 			if (j.getPartie() != null) {
 				int pdv = 0;
-				for (Croisement c : j.getMesCroisements()) {
+				for(Croisement c : j.getMesCroisements()) {
 					if (c.getVille() != null) {
 						if (c.getVille() == true) {
-							pdv += 2;
-						} else {
-							pdv += 1;
-						}
+							pdv+=2;
+						} 
+					} else {
+						pdv+=1;
 					}
 				}
 				for (Carte c : j.getMain()) {

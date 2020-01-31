@@ -31,27 +31,27 @@ public class Croisement {
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_1")
-	@JsonView(Views.Croisement.class)
+	@JsonView({Views.Croisement.class,Views.JoueurCalculPoint.class})
 	private Position pos1;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_2")
-	@JsonView(Views.Croisement.class)
+	@JsonView({Views.Croisement.class,Views.JoueurCalculPoint.class})
 	private Position pos2;
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="CROIS_POS_3")
-	@JsonView(Views.Croisement.class)
+	@JsonView({Views.Croisement.class,Views.JoueurCalculPoint.class})
 	private Position pos3;
 	
 	@ManyToOne
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "CROIS_JOUEUR")
-	@JsonView(Views.Croisement.class)
+	@JsonView({Views.Croisement.class,Views.JoueurEnPartie.class})
 	private Joueur joueur;
 
 	@Column(name="CROIS_VILLE")
-	@JsonView(Views.Croisement.class)
+	@JsonView({Views.Croisement.class,Views.JoueurCalculPoint.class})
 	private Boolean ville = false;
 	
 	@Column(name="CROIS_ACCES_PORT")

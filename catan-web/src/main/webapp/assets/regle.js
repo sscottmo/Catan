@@ -1,7 +1,9 @@
 
 
 function lanceDe() {
-	alert(Math.floor(Math.random()*5 + Math.random()*5 + 2));
+	let res = Math.floor(Math.random()*5 + Math.random()*5 + 2);
+	alert(res);
+	return res;
 }
 
 function desactive_bouton() {
@@ -15,20 +17,56 @@ function desactive_bouton() {
 document.getElementById('findetour').style.display="none";
 document.querySelector('#lanceDe')
 		.addEventListener('click', (event) =>{
-			lanceDe();
-			desactive_bouton();   
+			desactive_bouton(); 
+			envoieDe();
 		});
+
+function envoieDe() {
+//	event.preventDefault();
+	let resultatDe =lanceDe();
+	let resDe ={
+			"id": resultatDe
+	};
+	let de = fetch('http://localhost:8080/catan-web/api/plateau/de', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(resDe)
+	}).then(resp => resp.json());
+	
+	console.log("coucou");
+}
+
+//const ajouterProduitURL = async (event) => {
+//	event.preventDefault();
+//	let produit = {
+//			libelle: document.querySelector('input[name="libelle"]').value,
+//			prix: document.querySelector('input[name="prix"]').value
+//		};
+//	
+//	let produitRecu = await fetch('http://172.16.44.107:8081/E-musique-web/api/produit', {
+//		method: 'POST',
+//		headers: {
+//			'Content-Type': 'application/json'
+//		},
+//		body: JSON.stringify(resultatDe)
+//	}).then(resp => resp.json());
+//	
+//}
+
 
 function ajouteCroisement(id,couleur) {
 	document.querySelector(id)
-			.style.backgroundColor=couleur;
+			.style.backgroundColor='black';
 }
 
 //for (i=1 ; i<55 ; i++) {
 //	let id = '#cr_'+ i.toString();
 //	document.querySelector(id)
 //			.addEventListener('click', (event) => {
-//				ajouteCroisment()
+////				ajouteCroisement();
+//				document.querySelector(id).style.backgroundColor='black'
 //				});
 //}
 
@@ -48,15 +86,4 @@ document.querySelector('#findetour')
 		
 		});
 
-//
-//let eventSource = new EventSource('http://172.16.44.102:8080/catan-web/api/plateau/sse');
-//
-//eventSource.addEventListener('message', (croisement,couleur) => {
-//	
-//	let produit = {
-//			libelle: event.data,
-//			prix: 0
-//	};
-//	afficheProduitURL(produit);
-//	
-//})
+

@@ -112,5 +112,7 @@ eventSource2.addEventListener('message',(event)=>{
 
 function ajouteChemin(id,couleur) {
 	document.querySelector(id)
-			.style.backgroundColor=couleur;
+			.style.color=couleur;
+	document.querySelector(id)
+			.style.borderColor=couleur;
 }
